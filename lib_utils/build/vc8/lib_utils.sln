@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_utils", "..\..\src\vc8\lib_utils.vcproj", "{8D5C8AA1-2D49-4312-8EAD-8957213C4681}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "validation", "..\..\validation\src\vc8\validation.vcproj", "{1069F95E-2C1C-4C9F-8992-E1C282CDBC1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D5C8AA1-2D49-4312-8EAD-8957213C4681} = {8D5C8AA1-2D49-4312-8EAD-8957213C4681}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D5C8AA1-2D49-4312-8EAD-8957213C4681}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8D5C8AA1-2D49-4312-8EAD-8957213C4681}.Debug|Win32.Build.0 = Debug|Win32
+		{8D5C8AA1-2D49-4312-8EAD-8957213C4681}.Release|Win32.ActiveCfg = Release|Win32
+		{8D5C8AA1-2D49-4312-8EAD-8957213C4681}.Release|Win32.Build.0 = Release|Win32
+		{1069F95E-2C1C-4C9F-8992-E1C282CDBC1F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1069F95E-2C1C-4C9F-8992-E1C282CDBC1F}.Debug|Win32.Build.0 = Debug|Win32
+		{1069F95E-2C1C-4C9F-8992-E1C282CDBC1F}.Release|Win32.ActiveCfg = Release|Win32
+		{1069F95E-2C1C-4C9F-8992-E1C282CDBC1F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
