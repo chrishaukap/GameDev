@@ -1,0 +1,65 @@
+Angel Notes
+-----------
+
+This is Angel, a 2D prototyping engine based on OpenGL and C++. 
+
+Angel was originally made by a team at Electronic Arts Los Angeles for use 
+in a GameJam they were planning for April of 2008. Some people expressed 
+interest in using the engine outside of the jam, and so we're providing it 
+"as is" to anyone who wants it. 
+
+Angel provides:
+	- Actors (game objects with color, shape, responses, attributes, etc.)
+	- Texturing with Transparency
+	- "Animations" (texture swapping at defined intervals)
+	- Rigid-Body Physics
+		- A clever programmer can do soft-body physics with it
+	- Sound (.wav only)
+	- Text Rendering with multiple fonts
+	- Particle Systems
+	- Some basic AI (state machine and pathfinding)
+	- Input from a mouse, keyboard, or XBox 360 controller
+		- Binding inputs from a config file
+	- Config File Processing
+	- Tuning Variables that write out to a config file
+	- In-Game Console
+	- Logging
+
+
+(None of these things are horribly complex, but they're the sort of
+functionality that can be a pain to get working properly. The idea is to have
+a good set of base functionality to start with at the Jam.)
+
+Some things to keep in mind as you explore this code:
+
+1. Angel is not intended as a general-purpose protoyping engine. That doesn't
+   mean that it won't be suitable for lots of different things, but our chief
+   goal in putting it together is to make it so people could get up and
+   running with it as quickly as possible, specifically in a context where you
+   only have 48 hours to make something with it. 
+2. Angel is designed for experienced engineers. That doesn't mean that it uses
+   all sorts of crazy programming techniques or is difficult to use (quite the
+   opposite: see #1), but nor does it hold the developer's hand very much. We
+   would not recommend it as a teaching tool. 
+3. That said, we've taken pains to make the code as plain and readable as
+   possible. In some places we've sacrificed efficiency or functionality if it
+   would obfuscate the code. 
+
+All typical caveats apply: the code is messy in places, under-commented, 
+certain things may be broken. We're still evolving the engine and cleaning it 
+up, so any thoughts or recommendations are welcome. 
+
+We've included some sample games to get you started:
+	- IntroGame - a set of modular demos that show off specific bits
+	  of Angel functionality. Each demo displays the relevant code or
+	  config files so if you see something you like, you know right where
+	  to find it. We recommend you start here. 
+	- ClusterGame - Our original "DemoGame," where every new feature that
+	  was added to the engine found itself jammed into a single space.
+	  More of a development artifact than a useful point of examination. 
+	- StarterGame - A good point for you to start your own game -- it
+	  already has all its paths and includes set up properly, and intiates
+	  the engine with nothing in the world but a simple grid to help you 
+	  place objects. 
+
+

@@ -1,0 +1,221 @@
+BeginActor solidbox
+	ActorFactorySetPosition -2 6
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -1 6
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 6
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 2 6
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -5 5
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 5
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 2 5
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -5 4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 2 4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -5 3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -1 3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 5 3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -6 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -5 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -4 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -1 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 4 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -6 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -1 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 2 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 3 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 0
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -5 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -3 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -1 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 0 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 3 -1
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -4 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 0 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 3 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 5 -2
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -6 -3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 -3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 0 -3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 3 -3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 6 -3
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -6 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition -2 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 0 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 1 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 3 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 4 -4
+EndActor
+
+BeginActor solidbox
+	ActorFactorySetPosition 5 -4
+EndActor
+
+

@@ -1,0 +1,40 @@
+
+BeginActor ground_actor
+	ActorFactorySetPosition 0 -11
+	ActorFactoryAddTag spawned
+	ActorFactorySetLayerName foreground
+	ActorFactorySetName Ground
+EndActor
+
+; This actor is an PhysicsEventActor that's set up to
+;  respond to sound. Check physics_event_actor.adf. 
+BeginActor physics_event_actor
+	ActorFactorySetPosition 0 8
+	ActorFactorySetLayerName foreground
+	ActorFactoryAddTag spawned
+	ActorFactorySetName Bouncy
+EndActor
+
+
+; This actor is a non-colliding actor that is set to
+;  layer in front of the of the falling actor
+BeginActor simple_actor
+	ActorFactorySetColor 0.0 0.0 1.0
+	ActorFactorySetSize 3
+	ActorFactorySetPosition 0 1
+	ActorFactorySetAlpha 1.0
+	ActorFactorySetLayerName hud
+	ActorFactoryAddTag spawned
+EndActor
+
+; This actor is a non-colliding actor that is set to
+;  layer behind of the of the falling actor
+BeginActor simple_actor
+	ActorFactorySetColor 1.0 1.0 0.0
+	ActorFactorySetSize 3
+	ActorFactorySetPosition 0 -3
+	ActorFactorySetAlpha 1.0
+	ActorFactorySetLayerName background
+	ActorFactoryAddTag spawned
+EndActor
+

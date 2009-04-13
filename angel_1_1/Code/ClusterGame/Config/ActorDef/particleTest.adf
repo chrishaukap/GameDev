@@ -1,0 +1,19 @@
+ActorFactoryInitializeActorClass ParticleActor
+
+;Actor variables
+ActorFactorySetColor 1 0 0
+ActorFactorySetAlpha 1.0
+ActorFactorySetSize 2 2
+;ActorFactorySetSprite Resources\\Images\\xbox360.jpg
+ActorFactorySetSprite Resources\\Images\\woodfloor.png
+;ActorFactorySetShapeType Circle
+
+;Particle variables
+ActorFactorySetEmissionRate 20.0
+ActorFactorySetParticleLifetime 1.0
+ActorFactorySetSystemLifetime 2.0
+ActorFactorySetSpread 3.14159
+ActorFactorySetEndColor 1.0 1.0 1.0
+ActorFactorySetEndScale 0.0
+ActorFactorySetEndAlpha 0.0
+ActorFactorySetMaxParticles 100

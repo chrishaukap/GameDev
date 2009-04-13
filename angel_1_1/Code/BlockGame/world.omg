@@ -1,0 +1,40 @@
+background.bmp
+P:player.bmp:1
+N:bung_end_n.bmp:0
+S:bung_end_s.bmp:0
+E:bung_end_e.bmp:0
+W:bung_end_w.bmp:0
+V:bung_conn_v.bmp:0
+H:bung_conn_h.bmp:0
+I:innocent.bmp:6
+G:guard.bmp:0
+L:light.bmp:32
+B:box.bmp:10
+F:fence_horiz.bmp:0
+C:fence_vert.bmp:0
+X:exit.bmp:16
+1:bung_nw.bmp:0
+2:bung_ne.bmp:0
+3:bung_se.bmp:0
+4:bung_sw.bmp:0
+0:gap.bmp:16
+5:horiz_half_wall.bmp:0
+%
+FFFFFFFFFFFFF
+C   LLLL    0
+C           C
+C           C
+C           C
+C           C
+C   BBBB    C
+C   IIII    C
+C           C
+C           C
+C           C
+C           C
+C           C
+C           C
+CB B  B B   C
+C      I I  C
+CP          C
+FFFFFFFFFFFFF

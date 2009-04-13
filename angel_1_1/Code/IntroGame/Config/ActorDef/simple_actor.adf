@@ -1,0 +1,5 @@
+ActorFactoryInitializeActorClass Actor
+
+ActorFactorySetColor 1.0 0.0 1.0
+ActorFactorySetAlpha 0.5
+ActorFactorySetSize 5

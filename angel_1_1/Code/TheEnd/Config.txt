@@ -1,0 +1,60 @@
+BEGIN_TROPHY:SAMPLE_TROPHY_1
+description:"This is a Sample Trophy.  Obtainable by just 5 points into family"
+Ages:0-55
+ChoiceRequirements:Family=5
+# below is an upkeep.  currently unimplemented.  this trophy should be lost when family reaches 0
+Upkeep:Family=-1
+END_TROPHY
+
+BEGIN_TROPHY:SAMPLE_TROPHY_2
+description:"Another Sample Trophy.  This one requires the first"
+Ages:0-55
+ChoiceRequirements:Success=10
+TrophyRequirements:SAMPLE_TROPHY_1
+END_TROPHY
+
+BEGIN_TROPHY:HAVE_A_BABY
+description:"You had a baby! The night now rings with the sound of a screaming infant!"
+Ages:15-55
+ChoiceRequirements:Family=15,Love=15
+Upkeep:Family=2,Love=-1
+# TrophyRequirement of "found a lover"
+END_TROPHY
+
+BEGIN_TROPHY:CERTIFICATE_OF_AWESOMENESS
+description:"Because you are so awesome in your endeavors, you have been recognized with a Certificate of Awesomeness!"
+Ages:15-55
+ChoiceRequirements:Education=20,Success=20
+END_TROPHY
+
+BEGIN_TROPHY:DESPISED_BY_FAMILY
+Description:"Because of a history of abuse and neglect your children hate you."
+Ages:0-65
+ChoiceRequirements:Family=0
+TrophyRequirements:HAVE_A_BABY
+END_TROPHY
+
+BEGIN_TROPHY:DEATH_BY_CHILDREN
+description:"Because your family has hated you for years and you have made no effort to rectify that, your children have killed you."
+Ages:40-70
+TrophyRequirements:DESPISED_BY_FAMILY
+END_TROPHY
+
+BEGIN_CHOICE:Family
+END_CHOICE
+BEGIN_CHOICE:Love
+END_CHOICE
+BEGIN_CHOICE:Friendship
+END_CHOICE
+BEGIN_CHOICE:Health
+END_CHOICE
+BEGIN_CHOICE:Success
+END_CHOICE
+BEGIN_CHOICE:Education
+END_CHOICE
+BEGIN_CHOICE:Travel
+END_CHOICE
+BEGIN_CHOICE:Children
+END_CHOICE
+BEGIN_CHOICE:Legacy
+END_CHOICE

@@ -1,0 +1,9 @@
+ActorFactoryInitializeActorClass PhysicsActor
+
+;ActorFactorySetColor 1
+ActorFactorySetAlpha 0.25
+
+ActorFactoryLoadSprite Resources\\Images\\8ball.png
+
+ActorFactorySetShapeType Circle
+

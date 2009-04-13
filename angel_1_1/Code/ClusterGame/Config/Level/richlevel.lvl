@@ -1,0 +1,26 @@
+
+BeginActor particleTest
+;	ActorFactorySetSize 20
+	ActorFactorySetPosition 4 4
+EndActor
+
+;BeginActor solidbox
+;	ActorFactorySetSize 20
+;	ActorFactorySetPosition 0 18
+;EndActor
+
+;BeginActor solidbox
+;	ActorFactorySetSize 20
+;	ActorFactorySetPosition 18 0
+;EndActor
+
+;BeginActor solidbox
+;	ActorFactorySetSize 20
+;	ActorFactorySetPosition -18 0
+;EndActor
+
+;Start the cool stuff
+;LoadLevel staticLevel
+
+;Build pathdata
+;BuildSpatialGraph
