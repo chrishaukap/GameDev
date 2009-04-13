@@ -1,0 +1,31 @@
+1
+
+My intent for this blog (at least in the present) is simply to be a development journal for my current side project "Crypt Keeper".  I will make posts whenever i make significant changes to the game and I will try to touch on "what went right" and "what went wrong" in each post. In this way I hope to produce something that may (or may not) be useful to somebody at some point.  HUGE goals, i know.  
+
+I also recently purchased a digital tablet to do my own game art; I will post my crappy (hopefully approaching not-as-crappy) art for you to gawk at.  You can read more about Crypt Keeper *HERE*.
+
+Someday soon i hope to have not-so-crappy games that i can submit to *competitions* and be famous like *2Dboy* & *Kloonigames*
+
+If you happen upon the occasional post concerning Magic: The Gathering, Diablo3 or arbitrary thoughts on arbitrary games, bear with me, I'll get back to the point in some future post.
+
+
+2
+
+Here is a screen shot from the current version of my game-in-progress.
+<screen shot>
+Please note the hand-drawn (with my new digital tablet) people roaming around on the ground.  my own art, of which i am proud :)  
+
+Also note the non-textured mono-colored tree (it's much more visible in game).  It has a number of animated limbs that seek out, grab and fling the people on the ground.  It was dead simple getting this working in 2 dimensions... but moving to 3 dimensions was much less trivial than i was hoping it would be.  After running that gauntlet, i have a profound respect for 3D graphics programmers.  Wow.
+
+Unfortunately, I couldn't get the tree textured for this post.  It would have certainly looked better on my debut post to have a textured tree moving around in 3D, but i (a) didn't have a texture actually drawn for the tree yet, and (b) I'm currently rendering the tree with lines (not polygons) in OpenGL... which cannot be textured.  This is OK though... since I have no readers yet, I'm confident I can have textures on the tree before anyone sees it :)
+
+
+12-08-08
+
+Much time has passed and new things can be seen in my demo.  The tree limbs are now being rendered with 3d cylinders and textured.  I had to take the branches off the limbs to reduce the number of calculations i'm doing.  It's currently being very wasteful with math and will need to change so i can calculate & render branches too... which will make the limbs look much prettier.
+
+Here is a screen shot of the game in it's present state.  <img> each person has little animations now, and so does the evil tree flinging the peeps.  It's coming along :)
+
+
+
+
