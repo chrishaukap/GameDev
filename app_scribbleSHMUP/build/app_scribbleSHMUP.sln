@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scribbleSHMUP", "..\src\scribbleSHMUP.vcproj", "{E5D61E3B-0B40-4D58-A265-35D1D88C2418}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5D61E3B-0B40-4D58-A265-35D1D88C2418}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E5D61E3B-0B40-4D58-A265-35D1D88C2418}.Debug|Win32.Build.0 = Debug|Win32
+		{E5D61E3B-0B40-4D58-A265-35D1D88C2418}.Release|Win32.ActiveCfg = Release|Win32
+		{E5D61E3B-0B40-4D58-A265-35D1D88C2418}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
