@@ -1,0 +1,5 @@
+lib_ogg
+lib_openAL
+lib_vorbis
+lib_alut
+lib_utils
