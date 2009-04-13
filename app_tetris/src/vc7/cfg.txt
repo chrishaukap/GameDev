@@ -1,0 +1,14 @@
+# music volume. Range: X-X
+MusicVolume 25
+
+# sound effect volume. Range: X-X
+EffectsVolume 0
+
+# starting level
+StartingLevel 0
+
+# Direction the block rotates (clockwise or counterclockwise)
+RotationDirection CounterClockWise
+
+# specified whether the game is run in fullscreen mode
+FullScreen FALSE
