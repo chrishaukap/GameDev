@@ -1,0 +1,45 @@
+OBJECTIVE 1 (THURSDAY 18TH 2008): 
+==============================================================================
+
+workable demo (can be automated, but should not get itself into a bad state)
+
+1 - limbs moving
+2 - limbs thrashing (very simple)
+3 - thrashing terminating. [done]
+4 - peep deaths. (bluish color while thrashing (choking) then simple explosion)
+5 - peepdriver continuously spawns enemies. [DONE]
+6 - peeps need to to be able to move [DONE]
+6 - peeps appearing on one end of cemetary, moving to tree, tree
+    hunts them down, thrashes & kills (REPEATING/AUTOMATED DEMO)
+
+
+OBJECTIVE 2 (IGF COMP. NOVEMBER 1ST 2008):
+==============================================================================
+
+turn it into a game.  meaningful player interaction with the game.  
+defend some central cemetary object.
+
+PLAYER INTERACTION
+-------------------------------
+1 - build stationary defenses (minons need to construct):
+	* thrasher trees (need to be protected by minions)
+	* pit trap graves  
+	* spike traps 
+	* stone wall 
+2 - build mobile defenders (minions):
+	* Zombie Tree - tree sprouts zombies like fruit (minions must protect)  
+	* Raise start skellies for free from earth
+	* gargoyles (constructed/repaired by minions)
+
+MINION TYPES
+-------------------------------
+1 - starter skellies - raised for free from earth 
+    - cemetary floor looks like earth with bones sticking out
+    
+2 - zombies - produced at the zombie tree
+
+
+
+
+OBJECTIVE 3 (IGF COMP. FALL 2009)
+==============================================================================
