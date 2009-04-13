@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_dxGameLib", "..\..\src\vc7\lib_dxGameLib.vcproj", "{01216582-FAEE-4262-9667-678A31DEA1BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AdjustSound", "..\..\examples\dxsound\adjustsound\adjustsound.vcproj", "{115C95AE-3DC0-4630-943F-D7860AE9B14C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlaySound", "..\..\examples\dxsound\playsound\playsound.vcproj", "{EC34B703-D090-45E7-9F43-693CCECA96DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{01216582-FAEE-4262-9667-678A31DEA1BE}.Debug.ActiveCfg = Debug|Win32
+		{01216582-FAEE-4262-9667-678A31DEA1BE}.Debug.Build.0 = Debug|Win32
+		{01216582-FAEE-4262-9667-678A31DEA1BE}.Release.ActiveCfg = Release|Win32
+		{01216582-FAEE-4262-9667-678A31DEA1BE}.Release.Build.0 = Release|Win32
+		{115C95AE-3DC0-4630-943F-D7860AE9B14C}.Debug.ActiveCfg = Debug|Win32
+		{115C95AE-3DC0-4630-943F-D7860AE9B14C}.Debug.Build.0 = Debug|Win32
+		{115C95AE-3DC0-4630-943F-D7860AE9B14C}.Release.ActiveCfg = Release|Win32
+		{115C95AE-3DC0-4630-943F-D7860AE9B14C}.Release.Build.0 = Release|Win32
+		{EC34B703-D090-45E7-9F43-693CCECA96DE}.Debug.ActiveCfg = Debug|Win32
+		{EC34B703-D090-45E7-9F43-693CCECA96DE}.Debug.Build.0 = Debug|Win32
+		{EC34B703-D090-45E7-9F43-693CCECA96DE}.Release.ActiveCfg = Release|Win32
+		{EC34B703-D090-45E7-9F43-693CCECA96DE}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
