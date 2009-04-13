@@ -20,7 +20,7 @@ sub doProjectCheckout
    print "\n------------------------------------\n";
    print "- Checking Out: $curProject \n";
    print "------------------------------------\n";
-   system( "svn co file:///svnsrc/$curProject");   
+   system( "cvs co $curProject");   
 }
 
 sub doProjectBuild
