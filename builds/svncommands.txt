@@ -1,0 +1,100 @@
+
+LISTING PROJECTS IN SUBVERSION
+==========================================================
+F:\tree.mine\deleteme>svn list --verbose file:///f:/svnsrc
+      8 Fuentez               Jul 04 19:11 app_tetris/
+      4 Fuentez               Jul 04 17:50 archnoid/
+      5 Fuentez               Jul 04 17:52 builds/
+     24 Fuentez               Sep 20 09:10 graveyardDemo/
+      7 Fuentez               Jul 04 19:07 lib_dxGameLib/
+      6 Fuentez               Jul 04 18:00 lib_utils/
+      2 Fuentez               Jul 04 17:45 sorts/
+
+CHECKING OUT A PROJECT
+============================================================================
+F:\tree.mine\deleteme>svn co file:///f:/svnsrc/graveyardDemo [target_folder]
+A    graveyardDemo\trunk
+A    graveyardDemo\trunk\build
+A    graveyardDemo\trunk\build\OpenGLApplication.sln
+A    graveyardDemo\trunk\val
+A    graveyardDemo\trunk\val\valVector3D.h
+A    graveyardDemo\trunk\val\valmain.cpp
+A    graveyardDemo\trunk\val\validation.vcproj
+A    graveyardDemo\trunk\val\valVector3D.cpp
+A    graveyardDemo\trunk\src
+A    graveyardDemo\trunk\src\Tree.cpp
+A    graveyardDemo\trunk\src\fence.cpp
+A    graveyardDemo\trunk\src\winmain.cpp
+A    graveyardDemo\trunk\src\Limb.cpp
+A    graveyardDemo\trunk\src\graveyard.cpp
+A    graveyardDemo\trunk\src\peepDriver.cpp
+A    graveyardDemo\trunk\src\quaternion.cpp
+A    graveyardDemo\trunk\src\3dUtils.vcproj
+A    graveyardDemo\trunk\src\OpenGLApplication.vcproj
+A    graveyardDemo\trunk\src\peep.cpp
+A    graveyardDemo\trunk\src\vector3D.cpp
+A    graveyardDemo\trunk\src\GameState.cpp
+A    graveyardDemo\trunk\src\CGfxOpenGL.cpp
+A    graveyardDemo\trunk\src\Branch.cpp
+A    graveyardDemo\trunk\inc
+A    graveyardDemo\trunk\inc\peep.h
+A    graveyardDemo\trunk\inc\vector3D.h
+A    graveyardDemo\trunk\inc\GameState.h
+A    graveyardDemo\trunk\inc\CGfxOpenGL.h
+A    graveyardDemo\trunk\inc\Branch.h
+A    graveyardDemo\trunk\inc\defines.h
+A    graveyardDemo\trunk\inc\thrashable.h
+A    graveyardDemo\trunk\inc\Tree.h
+A    graveyardDemo\trunk\inc\fence.h
+A    graveyardDemo\trunk\inc\Limb.h
+A    graveyardDemo\trunk\inc\graveyard.h
+A    graveyardDemo\trunk\inc\peepDriver.h
+A    graveyardDemo\trunk\inc\quaternion.h
+A    graveyardDemo\trunk\inc\camera.h
+A    graveyardDemo\trunk\etc
+A    graveyardDemo\trunk\etc\OBJ.txt
+A    graveyardDemo\trunk\etc\CL.TXT
+A    graveyardDemo\branches
+A    graveyardDemo\tags
+
+CHECKING OUT ALL PROJECTS IN SUBVERSION
+==============================================================
+F:\tree.mine\deleteme>svn co file:///f:/svnsrc [TARGET_FOLDER]
+A    svnsrc\builds
+A    svnsrc\builds\deepbuild.bat
+A    svnsrc\lib_dxGameLib
+A    svnsrc\lib_dxGameLib\build
+A    svnsrc\lib_dxGameLib\build\vc7
+A    svnsrc\lib_dxGameLib\build\vc7\lib_dxGameLib.sln
+...
+A    svnsrc\lib_utils
+A    svnsrc\lib_utils\build
+A    svnsrc\lib_utils\build\vc7
+...
+A    svnsrc\graveyardDemo
+A    svnsrc\graveyardDemo\trunk
+A    svnsrc\graveyardDemo\trunk\build
+A    svnsrc\graveyardDemo\trunk\build\OpenGLApplication.sln
+A    svnsrc\graveyardDemo\trunk\val
+...
+
+
+IMPORTING A PROJECT INTO SUBVERSION
+==============================================================
+F:\tree.mine>ls
+ScrollingShooter
+app_tetris
+app_valentine
+builds
+graveyardDemo
+lib_dxGameLib
+lib_utils
+new
+oldstuff
+website
+
+F:\tree.mine>svn import website file:///f:/svnsrc/website
+
+
+
+
