@@ -291,3 +291,14 @@ float MathUtil::VectorDeltaAngle(Vector2 v1, Vector2 v2)
 	return acos( Vector2::Dot(v1, v2) );
 }
 
+
+Vector2 MathUtil::MoveP1TowardP2(const Vector2& pToMove, 
+											const Vector2& dstPoint, 
+											float speed)
+{
+   Vector2 vecV1ToV2 = dstPoint - pToMove;
+   vecV1ToV2.Normalize();
+      
+   // move v1 toward v2 by speed
+   return Vector2( pToMove + (vecV1ToV2 * speed) );	
+}

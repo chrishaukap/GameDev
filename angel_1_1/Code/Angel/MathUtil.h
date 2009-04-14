@@ -77,7 +77,8 @@ public:
 	static Vector2 VectorFromAngle(float angle_in_degrees);
 	static float AngleFromVector(const Vector2& v1);
 	static float AngleFromVectors(const Vector2& v1, const Vector2& v2);
-
+	static Vector2 MoveP1TowardP2(const Vector2& pToMove, const Vector2& dstPoint, float dist);
+		
 	//misc functions
 	static int RoundToInt(double x);
 	static int RandomInt(int maximum);
