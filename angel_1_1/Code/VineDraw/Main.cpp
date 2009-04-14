@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 	theWorld.SetupPhysics();
 
    GridActor* gridActor = new GridActor(Color3f(0.75f, 0.75f, 0.75f), Color3f(0.25f,0.25f,0.25f), 1.0f );
-	theWorld.Add(gridActor);
+	//theWorld.Add(gridActor);
 	 
 	theWorld.SetGameManager(&theVineGame);
 	theWorld.StartGame();

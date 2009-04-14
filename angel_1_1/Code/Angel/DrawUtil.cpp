@@ -44,6 +44,14 @@ void DrawPoint( const Vector2& point, float size )
 	glEnd();
 }
 
+
+void DrawLine( const Vector2& from, const Vector2& to, Color3f color, float width)
+{   
+   glLineWidth(width);
+	glColor3f(color.R, color.G, color.B);
+   DrawLine(from,to);
+}
+
 void DrawLine( const Vector2& vFrom, const Vector2& vTo )
 {
 	glBegin(GL_LINES);

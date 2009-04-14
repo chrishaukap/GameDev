@@ -51,7 +51,7 @@ void VineGameManager::Restart(const String& input)
 
 void VineGameManager::Update(float dt)
 {
-
+   Sleep(30);
 }
 void VineGameManager::Render()
 {

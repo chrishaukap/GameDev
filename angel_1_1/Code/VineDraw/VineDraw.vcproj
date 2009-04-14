@@ -278,6 +278,14 @@
 				RelativePath=".\vine.h"
 				>
 			</File>
+			<File
+				RelativePath=".\VNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\VNode.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\Main.cpp"
