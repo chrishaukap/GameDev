@@ -13,9 +13,11 @@ typedef std::vector<VNode*> VINENODES;
 class VNode
 {
 public:
-	VNode(const Vector2& p1, float angle) :
-		m_p1(p1), m_angle(angle), m_length(0), m_children()
-	{}
+	VNode(const Vector2& location, const Vector2& orientation) :
+		m_location(location), m_orientation(orientation), m_length(0), m_children()
+	{
+		m_orientation.Normalize();
+	}
 	~VNode()
 	{
 		int sz = (int)m_children.size();
@@ -26,23 +28,28 @@ public:
 	void grow(const Vector2& targetPoint, bool& reachedTarget,
 				 VINENODES& newChildren, VINENODES& staleChildren)
 	{
-		reachedTarget = false;		
-		incrementGrowth();
-      Sleep(10);
-
-		reachedTarget = bool(MathUtil::Distance(m_p1.X, m_p1.Y, targetPoint.X, targetPoint.Y) <= GrowthIncrement);
-		if(maxLengthReached() && !reachedTarget)
+		Vector2 endP = endPoint();
+		reachedTarget = bool(
+			MathUtil::Distance(endP.X, endP.Y, 
+									 targetPoint.X, targetPoint.Y) <= GrowthIncrement);	
+		if(!reachedTarget)
 		{
-			staleChildren.push_back(this);
-			addRandomizedChildren(endPoint(), targetPoint);
-			int sz = (int)m_children.size();
-			for( int i=0; i<sz; ++i )
-				newChildren.push_back(m_children[i]);
-		}		
+			incrementGrowth();
+			Sleep(10);
+
+			if(maxLengthReached())
+			{
+				staleChildren.push_back(this);
+				addRandomizedChildren(endPoint(), targetPoint);
+				int sz = (int)m_children.size();
+				for( int i=0; i<sz; ++i )
+					newChildren.push_back(m_children[i]);
+			}		
+		}
 	}
 	void render() const
 	{		
-		DrawLine( m_p1, endPoint() );
+		DrawLine( m_location, endPoint() );
 		int numChildren = (int)m_children.size();
       for(int i=0; i<numChildren; ++i)
          m_children[i]->render();
@@ -50,8 +57,7 @@ public:
 private:
 	const Vector2 endPoint() const
 	{
-		Vector2 p2 = MathUtil::VectorFromAngle(m_angle);		
-		return p2 * m_length;
+		return m_location + (m_orientation * m_length);
 	}
 	void incrementGrowth()
 	{
@@ -63,16 +69,16 @@ private:
 	}
 	void addRandomizedChildren(const Vector2& startPoint, const Vector2& targetPoint)
 	{
-		float angleInRadians = MathUtil::AngleFromVectors(startPoint, targetPoint);
-
+		Vector2 origin = targetPoint - startPoint;
+	
 		// n times...
-		m_children.push_back( new VNode(startPoint, MathUtil::ToDegrees(angleInRadians) /*randomize this*/) );
+		m_children.push_back( new VNode(startPoint, origin /*randomize this*/) );
 	}
 
 	static float MaxLength;
 	static float GrowthIncrement;
-	Vector2 m_p1;
-	float m_angle;
+	Vector2 m_location;
+	Vector2 m_orientation;
 	float m_length;
 	std::vector<VNode*> m_children;
 };
@@ -83,7 +89,7 @@ class Vine::Data
 {
 public:
 	Data() : 
-		root(new VNode(Vector2(0.0f, 0.0f), 15)), 
+		root(new VNode(Vector2(0.0f, 0.0f), Vector2(1,0))), 
 		shoots(), points()
 	{}
 	~Data()
@@ -157,9 +163,28 @@ void Vine::render() const
 }
 void Vine::createPointList()
 {
+	_vine->points.push(new Vector2(2.0f, 2.0f));
+	_vine->points.push(new Vector2(-2.0f, 2.0f));
+	_vine->points.push(new Vector2(-2.0f, -2.0f));
+	_vine->points.push(new Vector2(3.0f, -2.0f));
+
+	_vine->points.push(new Vector2(3.0f, 3.0f));
+	_vine->points.push(new Vector2(-3.0f, 3.0f));
+	_vine->points.push(new Vector2(-3.0f, -3.0f));
+	_vine->points.push(new Vector2(4.0f, -3.0f));
+
+	_vine->points.push(new Vector2(4.0f, 4.0f));
+	_vine->points.push(new Vector2(-4.0f, 4.0f));
+	_vine->points.push(new Vector2(-4.0f, -4.0f));
+	_vine->points.push(new Vector2(5.0f, -4.0f));
+
+	_vine->points.push(new Vector2(5.0f, 5.0f));
+	_vine->points.push(new Vector2(-5.0f, 5.0f));
+	_vine->points.push(new Vector2(-5.0f, -5.0f));
+	_vine->points.push(new Vector2(6.0f, -5.0f));
+
 	_vine->points.push(new Vector2(6.0f, 6.0f));
 	_vine->points.push(new Vector2(-6.0f, 6.0f));
 	_vine->points.push(new Vector2(-6.0f, -6.0f));
-	_vine->points.push(new Vector2(8.0f, -6.0f));
-	_vine->points.push(new Vector2(8.0f, 8.0f));
+	_vine->points.push(new Vector2(7.0f, -6.0f));
 }
