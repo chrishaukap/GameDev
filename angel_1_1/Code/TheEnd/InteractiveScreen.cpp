@@ -7,7 +7,9 @@
 #include "World.h"
 #include "TextActor.h"
 
-InteractiveScreen::InteractiveScreen() 
+InteractiveScreen::InteractiveScreen() :
+   m_t(NULL),
+   m_level(NULL)
 {}
 
 void InteractiveScreen::Stop()

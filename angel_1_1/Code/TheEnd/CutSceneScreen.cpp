@@ -4,7 +4,7 @@
 #include "World.h"
 #include "TextActor.h"
 
-CutSceneScreen::CutSceneScreen()
+CutSceneScreen::CutSceneScreen() : t(NULL)
 {
 }
 
