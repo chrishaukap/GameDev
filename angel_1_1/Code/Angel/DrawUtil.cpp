@@ -62,3 +62,15 @@ void DrawLine( const Vector2& vFrom, const Vector2& vTo )
 	glEnd();
 }
 
+
+
+void DrawSquare( const Vector2& ulCorner, const Vector2& lrCorner, Color3f color)
+{
+	glColor3f(color.R, color.G, color.B);
+	glBegin(GL_QUADS);
+		glVertex2f(lrCorner.X, ulCorner.Y);
+		glVertex2f(ulCorner.X, ulCorner.Y);
+		glVertex2f(ulCorner.X, lrCorner.Y);
+		glVertex2f(lrCorner.X, lrCorner.Y);
+	glEnd();
+}
