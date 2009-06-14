@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 	srand( (unsigned int)time(NULL) ); 
    TTTAIUtils::init();
 
-	const unsigned int scrnWidth = 800;
-	const unsigned int scrnHeight = 600;
+	const unsigned int scrnWidth = 400;
+	const unsigned int scrnHeight = 300;
 
-	theWorld.Initialize(argc, argv, scrnWidth, scrnHeight, 100, 100, "TicTacToe");
+	theWorld.Initialize(argc, argv, scrnWidth, scrnHeight, 1600, 900, "TicTacToe");
    theWorld.SetGameManager( &theTTTGameMngr );
 	
 	// do all your setup first, because this function won't return until you're exiting
