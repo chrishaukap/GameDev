@@ -153,22 +153,8 @@ Game::update(float dt)
 		}
 		break;
 	case Cascading:
-      {
-         do {
-            doCascade();
-         }
-         while( rowsCompleted() );
-      }
+			assert(!"not implemented");
 		break;
 	default: assert( !"unknown game state" );
 	}
-}
-void
-Game::doCascade()
-{
-   std::vector<CDH::CHUint>::iterator iter = m_rowsCompleted.begin();
-   while( iter != m_rowsCompleted.end() )
-   {
-
-   }
 }

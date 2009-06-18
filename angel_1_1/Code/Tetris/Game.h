@@ -34,9 +34,6 @@ namespace CDH
 			void createNewActiveBlock();
 			void addBlocksToBottomGrid();
 			bool rowsCompleted() const;
-         void doCascade();
-         void removeCompletedRows();
-         void cascadeBlocks();
 
 			Block* m_activeBlock;
 			std::vector<Block*> m_blocks;

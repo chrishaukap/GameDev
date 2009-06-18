@@ -233,38 +233,10 @@
 			<Filter
 				Name="Level"
 				>
-				<File
-					RelativePath=".\Config\Level\collisionlevel_demo.lvl"
-					>
-				</File>
-				<File
-					RelativePath=".\Config\Level\layeredcollisionlevel_demo.lvl"
-					>
-				</File>
-				<File
-					RelativePath=".\Config\Level\level_demo.lvl"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="ActorDef"
 				>
-				<File
-					RelativePath=".\Config\ActorDef\ground_actor.adf"
-					>
-				</File>
-				<File
-					RelativePath=".\Config\ActorDef\particle_demo.adf"
-					>
-				</File>
-				<File
-					RelativePath=".\Config\ActorDef\physics_event_actor.adf"
-					>
-				</File>
-				<File
-					RelativePath=".\Config\ActorDef\simple_actor.adf"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
