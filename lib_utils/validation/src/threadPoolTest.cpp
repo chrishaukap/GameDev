@@ -3,6 +3,8 @@
 #include <stdio.h>
 using namespace CDH;
 
+#define NUMTHREADS 4
+#define NUMTASKS 400
 class MyTask : public ThreadTask
 {
 public:
@@ -31,10 +33,10 @@ void
 ThreadPoolTest::test1()
 {
 	{
-		const CHUint numThreads = 128;
+		const CHUint numThreads = NUMTHREADS;
 		ThreadPool pool(numThreads);
 		pool.run();
-		const CHUint numTasks = 4000;
+		const CHUint numTasks = NUMTASKS;
 		MyTask *tasks[numTasks];
 		for(CHUint i=0; i<numTasks; ++i)
 		{
