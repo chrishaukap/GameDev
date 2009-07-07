@@ -1,0 +1,3 @@
+cd lib_angelFramework\src\Angel1.1\Code
+msbuild /t:Rebuild /p:Configuration=%CDH_CONFIGURATION% /v:d
+cd ..\..\..\..

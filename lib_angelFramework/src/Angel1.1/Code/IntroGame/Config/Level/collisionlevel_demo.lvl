@@ -1,0 +1,14 @@
+
+BeginActor ground_actor
+	ActorFactorySetPosition 0 -11
+	ActorFactoryAddTag spawned
+	ActorFactorySetName Ground
+EndActor
+
+; This actor is an PhysicsEventActor that's set up to
+;  respond to sound. Check physics_event_actor.adf. 
+BeginActor physics_event_actor
+	ActorFactorySetPosition 0 8
+	ActorFactoryAddTag spawned
+	ActorFactorySetName Bouncy
+EndActor

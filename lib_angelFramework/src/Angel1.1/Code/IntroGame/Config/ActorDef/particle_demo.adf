@@ -1,0 +1,21 @@
+ActorFactoryInitializeActorClass ParticleActor
+
+;Actor variables
+ActorFactorySetColor 1 1 1
+ActorFactorySetAlpha 1.0
+ActorFactorySetSize 0.2 0.2
+ActorFactorySetSprite Resources\\Images\\Test.png
+
+;Particle variables
+ActorFactorySetMaxParticles 500
+ActorFactorySetEmissionRate 10.0
+ActorFactorySetParticleLifetime 1.5
+ActorFactorySetSystemLifetime 0.0
+ActorFactorySetSpread 3.14159
+ActorFactorySetEndColor 1 0 0
+ActorFactorySetEndScale 1
+ActorFactorySetEndAlpha 0.0
+ActorFactorySetMinSpeed 3.0
+ActorFactorySetMaxSpeed 4.0
+ActorFactorySetGravity 0 0
+

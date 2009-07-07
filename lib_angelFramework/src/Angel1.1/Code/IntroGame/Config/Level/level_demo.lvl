@@ -1,0 +1,18 @@
+
+BeginActor simple_actor
+	ActorFactorySetSize 3
+	ActorFactorySetPosition -5 0
+	ActorFactoryAddTag spawned
+	ActorFactoryAddTag left-tilted
+	ActorFactorySetName LeftActor
+EndActor
+
+BeginActor simple_actor
+	ActorFactorySetSize 5
+	ActorFactorySetPosition 5 0
+	ActorFactorySetColor 1 0 0
+	ActorFactorySetAlpha 0.8
+	ActorFactoryAddTag spawned
+	ActorFactoryAddTag right-tilted
+	ActorFactorySetName RightActor
+EndActor
