@@ -178,6 +178,38 @@
 				RelativePath=".\main.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\mergesort.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\mergesort.h"
+				>
+			</File>
+			<File
+				RelativePath=".\myitoa.h"
+				>
+			</File>
+			<File
+				RelativePath=".\quicksort.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\quicksort.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stringReversal.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\stringReversal.h"
+				>
+			</File>
+			<File
+				RelativePath=".\swap.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
