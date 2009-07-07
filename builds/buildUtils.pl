@@ -5,13 +5,14 @@ package BuildUtils;
 
 my $proj = "";
 my $config = "";
+my $target = "";
 
 sub printProject
 {
    my( $curProject ) = @_;
-   print "\n------------------------------------\n";
+   print "\n------------------------------------\n-\n";
    print "- Building: $curProject \n";
-   print "------------------------------------\n";
+   print "-\n------------------------------------\n";
 }
 
 sub doProjectCheckout
@@ -23,10 +24,25 @@ sub doProjectCheckout
    system( "cvs co $curProject");   
 }
 
-sub doProjectBuild
+sub doCleanBuild
 {
    my( $curProject, $curConfig ) = @_;
    system( "msbuild $curProject.sln /t:Rebuild /p:Configuration=$curConfig /v:d" );
+}
+sub doBuild
+{
+   my( $curProject, $curConfig ) = @_;
+   system( "msbuild $curProject.sln /p:Configuration=$curConfig /v:d" );
+}
+sub doProjectValidate
+{
+   my( $project ) = @_;
+   chdir( "$project/validation" );
+   if( -f "$ENV{'CDH_BINS_DIR'}/validate.exe")
+   {
+      system( "$ENV{'CDH_BINS_DIR'}/validate.exe" );
+   }
+   chdir( "../.." );
 }
 
 sub stringExistsInArray
@@ -53,6 +69,42 @@ sub removeDuplicateDependencies
       }
    }   
    return @retarray;
+}
+
+sub getCompileCommands
+{
+   my( $project ) = @_;
+   my @compileCommands;
+   my $compfile = "$project/build/compilationSteps";
+               
+   if( -f "$compfile" )
+   {
+      open(COMPFILE, "<$compfile"); 
+      my @lines = <COMPFILE>;
+      chomp @lines;
+      close COMPFILE;    
+      
+      push(@compileCommands, @lines);
+      @compileCommands = reverse(@compileCommands);
+   }   
+   return @compileCommands;
+}
+sub getDistroCommands
+{
+   my( $project ) = @_;
+   my @distroCommands;
+   my $distfile = "$project/build/distroCommands";
+               
+   if( -f "$distfile" )
+   {
+      open(DISTFILE, "<$distfile"); 
+      my @lines = <DISTFILE>;
+      chomp @lines;
+      close DISTFILE;    
+      
+      push(@distroCommands, @lines);
+   }   
+   return @distroCommands;
 }
 
 sub getDependencies
