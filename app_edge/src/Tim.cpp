@@ -5,6 +5,9 @@
 #include "TimTail.h"
 #include "World.h"
 
+// because of LAME collision system
+#include "Indie.h"
+
 using namespace CDH;
 using namespace Edge;
 
@@ -36,7 +39,7 @@ void Tim::Init()
 	m_head->SetColor(1,0,0);
 	theWorld.Add(m_head);
 
-   m_tail = new TimTail();
+   m_tail = new TimTail(*m_head);
 }
 void Tim::Clear()
 {
@@ -45,9 +48,10 @@ void Tim::Clear()
    delete m_tail; m_tail = NULL;
 }
 
-void Tim::Collided(const Indie*)
+void Tim::Collided(const Indie* indie)
 {
-   m_tail->addTailNode();
+	if(!indie->isDead())
+		m_tail->addTailNode();
 }
 
 static bool g_mouseOn = false;

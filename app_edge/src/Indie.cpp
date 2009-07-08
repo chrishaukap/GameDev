@@ -8,6 +8,7 @@
 
 using namespace CDH;
 using namespace Edge;
+#define INDIE_LIFESPAN 500
 
 Indie::Indie() : 
    m_state(eLiving),
@@ -40,7 +41,7 @@ void Indie::Update(float dt)
       }
       break;     
    case eDying:
-      if( ++m_dyingCounter > 2000 )
+      if( ++m_dyingCounter > INDIE_LIFESPAN )
          m_state = eDead;
       break;
    case eDead:

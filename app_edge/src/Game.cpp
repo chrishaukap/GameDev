@@ -8,6 +8,7 @@
 #include <assert.h>
 using namespace CDH;
 using namespace Edge;
+#define NUM_INDIES 1
 
 Game::Game(CHUint rows, CHUint cols) :
 	m_indies(),
@@ -19,7 +20,7 @@ Game::~Game()
 void 
 Game::start()
 {
-	for(CDH::CHUint i=0; i< 200; ++i)
+	for(CDH::CHUint i=0; i< NUM_INDIES; ++i)
 	{
 		Indie* indie = new Indie();
 		indie->SetSize(1.0f);

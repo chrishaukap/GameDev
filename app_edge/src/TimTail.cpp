@@ -1,5 +1,6 @@
 
 #include "TimTail.h"
+#include "TimHead.h"
 #include "MathUtil.h"
 #include "Actor.h"
 #include "World.h"
@@ -13,7 +14,7 @@ class TailNode : public Actor
 public:
    void moveTo(const Vector2& point, float distance)
    {
-      MathUtil::MoveP1TowardP2(GetPosition(), point, distance);
+      SetPosition(MathUtil::MoveP1TowardP2(GetPosition(), point, distance));
    }
 };
 
@@ -36,7 +37,8 @@ public:
    TAILNODES _nodes;
 };
 
-TimTail::TimTail() : 
+TimTail::TimTail(const TimHead& head) : 
+	m_head(head),
    m_data(new Data())
 {}
 TimTail::~TimTail()
@@ -51,13 +53,16 @@ TimTail::addTailNode()
    Vector2 pos;
    if( ! m_data->_nodes.empty() )
    {
-      TailNode* lastNode = m_data->_nodes[(int)m_data->_nodes.size()];
+      TailNode* lastNode = m_data->_nodes[(int)m_data->_nodes.size()-1];
       pos = lastNode->GetPosition();
    }
    else
    {
+		pos = m_head.GetPosition();
    }
+	pos.X += m_head.GetSize().X;
    node->SetPosition(pos);
+	node->SetColor(0,0,1);
    theWorld.Add(node);
    m_data->_nodes.push_back(node);
 }
@@ -65,12 +70,15 @@ void
 TimTail::moveTo(const Vector2& point, float distance)
 {
    Vector2 dstPoint = point;
-   Data::TAILNODES::iterator iter = m_data->_nodes.begin();
-   while( iter != m_data->_nodes.end() )
-   {
-      (*iter)->moveTo(dstPoint,distance);
-      ++iter;
-      if(iter != m_data->_nodes.end())
-         dstPoint = (*iter)->GetPosition();
-   }
+	if( m_data->_nodes.size() > 0)
+	{
+		Data::TAILNODES::iterator iter = m_data->_nodes.begin();
+		while( iter != m_data->_nodes.end() )
+		{
+			(*iter)->moveTo(dstPoint,distance);
+			++iter;
+			if(iter != m_data->_nodes.end())
+				dstPoint = (*iter)->GetPosition();
+		}
+	}
 }
