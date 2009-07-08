@@ -20,6 +20,7 @@ namespace CDH
 			void Update(float dt);
 
          bool isDead() const {return m_state == eDead;}
+         bool isAlive() const {return m_state == eLiving;}
          bool isMarkedForDeletion() const {return m_state == eDeleteMe;}
          void markMeForDeletion() {m_state = eDeleteMe;}
 

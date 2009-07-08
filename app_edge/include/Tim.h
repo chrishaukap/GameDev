@@ -23,9 +23,10 @@ namespace CDH
 			void Update(float dt);
 			
 			const Vector2 GetPosition();
-			const Vector2  GetSize();
+			const Vector2 GetSize();
 
 			void Collided(const Indie*);
+         void GrowTail();
 
 	      // inherited from MouseListener
 	      void MouseDownEvent(Vec2i screenCoordinates, MouseButtonInput button);

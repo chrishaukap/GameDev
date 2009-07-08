@@ -8,7 +8,7 @@
 
 using namespace CDH;
 using namespace Edge;
-#define INDIE_LIFESPAN 500
+#define INDIE_LIFESPAN 750
 
 Indie::Indie() : 
    m_state(eLiving),

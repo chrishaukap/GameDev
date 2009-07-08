@@ -7,6 +7,7 @@
 
 // because of LAME collision system
 #include "Indie.h"
+#define TIM_SPEED 10.0f
 
 using namespace CDH;
 using namespace Edge;
@@ -14,7 +15,7 @@ using namespace Edge;
 Tim::Tim() : 
    m_head(), 
    m_tail(),
-   m_speed(5.0f)
+   m_speed(TIM_SPEED)
 {}
 Tim::~Tim()
 {
@@ -48,10 +49,13 @@ void Tim::Clear()
    delete m_tail; m_tail = NULL;
 }
 
+void
+Tim::GrowTail()
+{
+   m_tail->addTailNode();
+}
 void Tim::Collided(const Indie* indie)
 {
-	if(!indie->isDead())
-		m_tail->addTailNode();
 }
 
 static bool g_mouseOn = false;

@@ -8,7 +8,7 @@
 #include <assert.h>
 using namespace CDH;
 using namespace Edge;
-#define NUM_INDIES 1
+#define NUM_INDIES 200
 
 Game::Game(CHUint rows, CHUint cols) :
 	m_indies(),
@@ -25,7 +25,7 @@ Game::start()
 		Indie* indie = new Indie();
 		indie->SetSize(1.0f);
 
-      Vector2 pos = MathUtil::RandomVector(Vector2(-3,-3), Vector2(3,3));
+      Vector2 pos = MathUtil::RandomVector(Vector2(-8,-8), Vector2(8,8));
 
       indie->SetPosition(pos);
 		indie->SetColor(0,0,0);
@@ -82,7 +82,7 @@ void Game::cleanup()
 void
 Game::update(float dt)
 {  
-   // updated game objects
+   // update game objects
 	std::vector<Indie*>::iterator iter = m_indies.begin();
 	while( iter != m_indies.end() )
 	{
@@ -104,8 +104,9 @@ Game::update(float dt)
                              indiePos.X,timPos.X,
                              indiePos.X + indieSize.X, timPos.X + timSize.X))
       {
-         (*iter)->Collided(m_tim);
+         // process Tim's collisions first (depends on Indie being alive)
          m_tim->Collided( (*iter) );
+         (*iter)->Collided(m_tim);
 		}
 		++iter;
 	}
@@ -118,9 +119,12 @@ Game::update(float dt)
       {
          theWorld.Remove(*iter);
          (*iter)->markMeForDeletion();
+
+         // add Tail Nodes 
+         int random = MathUtil::RandomIntInRange(1,10);
+         if(random >= 7)
+            m_tim->GrowTail();
       }
 		++iter;
 	}
-
-
 }

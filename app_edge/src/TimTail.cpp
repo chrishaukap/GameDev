@@ -4,6 +4,7 @@
 #include "MathUtil.h"
 #include "Actor.h"
 #include "World.h"
+#include "MathUtil.h"
 #include <vector>
 
 using namespace CDH;
@@ -69,16 +70,15 @@ TimTail::addTailNode()
 void 
 TimTail::moveTo(const Vector2& point, float distance)
 {
-   Vector2 dstPoint = point;
-	if( m_data->_nodes.size() > 0)
+   int numNodes = (int)m_data->_nodes.size();
+   float size = m_head.GetSize().X * 0.90f;
+	for( int i=numNodes-1; i>=0; --i )
 	{
-		Data::TAILNODES::iterator iter = m_data->_nodes.begin();
-		while( iter != m_data->_nodes.end() )
-		{
-			(*iter)->moveTo(dstPoint,distance);
-			++iter;
-			if(iter != m_data->_nodes.end())
-				dstPoint = (*iter)->GetPosition();
-		}
+      Vector2 dstPoint = 
+         MathUtil::MoveP1TowardP2(
+            i==0 ? point : m_data->_nodes[i-1]->GetPosition(), 
+            m_data->_nodes[i]->GetPosition(), 
+            size);
+		m_data->_nodes[i]->moveTo(dstPoint,distance);
 	}
 }
