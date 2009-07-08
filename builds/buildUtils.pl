@@ -6,6 +6,7 @@ package BuildUtils;
 my $proj = "";
 my $config = "";
 my $target = "";
+my $rebuild = 0;
 
 sub printProject
 {
@@ -18,31 +19,51 @@ sub printProject
 sub doProjectCheckout
 {
    my( $curProject ) = @_;
-   print "\n------------------------------------\n";
+   print "\n------------------------------------\n-\n";
    print "- Checking Out: $curProject \n";
-   print "------------------------------------\n";
+   print "-\n------------------------------------\n";
    system( "cvs co $curProject");   
 }
 
-sub doCleanBuild
+sub executeCommands
 {
-   my( $curProject, $curConfig ) = @_;
-   system( "msbuild $curProject.sln /t:Rebuild /p:Configuration=$curConfig /v:d" );
+   my (@listOfCommands) = @_;
+   while( $#listOfCommands >= 0 )
+   {
+      my $command = pop(@listOfCommands);
+      print "EXECUTING COMMAND: $command\n";      
+      if( substr($command, 0, 3) eq "cd " )
+      {
+         chdir( substr($command, 3) );
+      }
+      else
+      {
+         system( "$command" ); 
+      }
+   }
 }
+
 sub doBuild
 {
    my( $curProject, $curConfig ) = @_;
-   system( "msbuild $curProject.sln /p:Configuration=$curConfig /v:d" );
+   print "DOBUILD: msbuild $curProject.sln $ENV{'CDH_REBUILD'} /p:Configuration=$curConfig /v:d\n\n";
+   system( "msbuild $curProject.sln $ENV{'CDH_REBUILD'} /p:Configuration=$curConfig /v:d" );
 }
 sub doProjectValidate
 {
-   my( $project ) = @_;
-   chdir( "$project/validation" );
-   if( -f "$ENV{'CDH_BINS_DIR'}/validate.exe")
+   if( -d "validation" )
    {
-      system( "$ENV{'CDH_BINS_DIR'}/validate.exe" );
+      chdir( "validation" );
+      if( -f "$ENV{'CDH_BINS_DIR'}/validate.exe")
+      {
+         system( "$ENV{'CDH_BINS_DIR'}/validate.exe" );
+      }
+      chdir( ".." );
    }
-   chdir( "../.." );
+   else
+   {
+      print "No validation tests to run...\n";
+   }
 }
 
 sub stringExistsInArray
@@ -73,9 +94,8 @@ sub removeDuplicateDependencies
 
 sub getCompileCommands
 {
-   my( $project ) = @_;
    my @compileCommands;
-   my $compfile = "$project/build/compilationSteps";
+   my $compfile = "build/compilationSteps";
                
    if( -f "$compfile" )
    {
@@ -91,10 +111,8 @@ sub getCompileCommands
 }
 sub getDistroCommands
 {
-   my( $project ) = @_;
    my @distroCommands;
-   my $distfile = "$project/build/distroCommands";
-               
+   my $distfile = "build/distroCommands";
    if( -f "$distfile" )
    {
       open(DISTFILE, "<$distfile"); 
@@ -103,6 +121,7 @@ sub getDistroCommands
       close DISTFILE;    
       
       push(@distroCommands, @lines);
+      @distroCommands = reverse(@distroCommands);
    }   
    return @distroCommands;
 }

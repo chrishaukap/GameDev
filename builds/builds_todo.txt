@@ -1,0 +1,1 @@
+1) make distro steps a batch file and have ide run it too.
