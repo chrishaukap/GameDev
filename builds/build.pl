@@ -39,7 +39,6 @@ if($BuildUtils::proj eq "" || $BuildUtils::config eq "")
 {
    usage();
 }
-die "unknown project!" unless -d $BuildUtils::proj; 
 exit (main());
 
 sub main
@@ -65,6 +64,7 @@ sub main
 sub buildProject
 {
    my( $project ) = @_;      
+   die "unknown project!" unless -d $BuildUtils::proj; 
    chdir( "$project" );
    BuildUtils::printProject($project);     
    compileProject($project);   
