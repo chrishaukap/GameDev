@@ -190,7 +190,7 @@ void Actor::SetSize(float x, float y)
 	_size = Vector2(sizeX, sizeY);
 }
 
-const Vector2 Actor::GetSize()
+const Vector2 Actor::GetSize() const
 {
 	return _size;
 }
@@ -206,7 +206,7 @@ void Actor::SetPosition(Vector2 pos)
 	_position = pos;
 }
 
-const Vector2 Actor::GetPosition()
+const Vector2 Actor::GetPosition() const
 {
 	return _position;
 }

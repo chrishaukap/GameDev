@@ -32,10 +32,10 @@ public:
 
 	// equal dimensions by default
 	virtual void SetSize(float x, float y = -1.f);
-	const Vector2 GetSize();
+	const Vector2 GetSize() const;
 	virtual void SetPosition(float x, float y);
 	virtual void SetPosition(Vector2 pos);
-	const Vector2 GetPosition();
+	const Vector2 GetPosition() const;
 	void SetRotation(float rotation);
 	const float GetRotation();
 	const Color4f GetColor();
