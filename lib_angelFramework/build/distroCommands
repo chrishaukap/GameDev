@@ -1,0 +1,2 @@
+xcopy src\Angel1.1\Code\Angel\Libraries\FreeImage\Dist %CDH_DIST_DIR%\ /y /f /E
+xcopy src\Angel1.1\Code\Angel\Dist\%CDH_CONFIGURATION% %CDH_DIST_DIR%\ /y /f /E

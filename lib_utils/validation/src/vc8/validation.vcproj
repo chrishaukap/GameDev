@@ -62,9 +62,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="lib_utils.lib"
-				OutputFile="..\..\bin\vc8\$(ConfigurationName)\validate.exe"
+				OutputFile="..\..\bin\win32\$(ConfigurationName)\validate.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;..\..\..\lib\vc8\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;..\..\..\lib\win32\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/validation.pdb"
 				SubSystem="1"
@@ -145,9 +145,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="lib_utils.lib"
-				OutputFile="..\..\bin\vc8\$(ConfigurationName)\validate.exe"
+				OutputFile="..\..\bin\win32\$(ConfigurationName)\validate.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;..\..\..\lib\vc8\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;..\..\..\lib\win32\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
