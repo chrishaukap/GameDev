@@ -182,7 +182,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying DLLs and publishing..."
-				CommandLine="xcopy ..\Angel\Libraries\FreeImage\Dist\FreeImage.dll . /y&#x0D;&#x0A;xcopy ..\Tools\Publish.bat . /y&#x0D;&#x0A;call publish.bat&#x0D;&#x0A;"
+				CommandLine="xcopy ..\..\..\lib_angelFramework\src\Angel1.1\Code\Angel\Libraries\FreeImage\Dist\FreeImage.dll . /y&#x0D;&#x0A;ls ..\..\&#x0D;&#x0A;ls ..\..\etc&#x0D;&#x0A;call ..\..\etc\Publish.bat&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -237,6 +237,14 @@
 			</File>
 			<File
 				RelativePath="..\..\include\Indie.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Money.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\Money.h"
 				>
 			</File>
 			<File

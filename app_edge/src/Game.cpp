@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include "Indie.h"
+#include "Money.h"
 #include "Tim.h"
 #include "World.h"
 #include "MathUtil.h"
@@ -8,17 +9,33 @@
 #include <assert.h>
 using namespace CDH;
 using namespace Edge;
-#define NUM_INDIES 200
+#define NUM_INDIES 16
+#define NUM_MONEYS 16
 
 Game::Game(CHUint rows, CHUint cols) :
 	m_indies(),
+	m_moneys(),
    m_tim()
 {}
 Game::~Game()
 {}
-
 void 
-Game::start()
+Game::initMoney()
+{
+	for(CDH::CHUint i=0; i< NUM_MONEYS; ++i)
+	{
+		Money* money = new Money();
+		money->SetSize(0.7f);
+
+      Vector2 pos = MathUtil::RandomVector(Vector2(-8,-8), Vector2(8,8));
+
+      money->SetPosition(pos);
+		theWorld.Add(money);
+		m_moneys.push_back( money );
+	}
+}
+void 
+Game::initIndies()
 {
 	for(CDH::CHUint i=0; i< NUM_INDIES; ++i)
 	{
@@ -29,16 +46,40 @@ Game::start()
 
       indie->SetPosition(pos);
 		indie->SetColor(0,0,0);
-		theWorld.Add(indie);
+		theWorld.Add(indie,1);
 		m_indies.push_back( indie );
 	}
+}
+void 
+Game::initTim()
+{
    m_tim = new Tim();
    m_tim->Init();
 }
+
 void 
-Game::stop()
+Game::start()
 {
-	std::vector<Indie*>::iterator iter = m_indies.begin();
+	initMoney();
+	initIndies();
+	initTim();
+}
+void 
+Game::destroyMoney()
+{
+	MONEY_LIST::iterator iter1 = m_moneys.begin();
+	while( iter1 != m_moneys.end() )
+	{
+		theWorld.Remove( *iter1 );
+		delete (*iter1);
+		++iter1;
+	}
+	m_moneys.clear();
+}
+void 
+Game::destroyIndies()
+{
+	INDIE_LIST::iterator iter = m_indies.begin();
 	while( iter != m_indies.end() )
 	{
 		theWorld.Remove( *iter );
@@ -46,8 +87,18 @@ Game::stop()
 		++iter;
 	}
 	m_indies.clear();
-   
+}
+void 
+Game::destroyTim()
+{	
    delete m_tim; m_tim = NULL;
+}
+void 
+Game::stop()
+{
+	destroyMoney();
+	destroyIndies();
+	destroyTim();
 }
 
 static bool 
@@ -66,7 +117,7 @@ RectanglesIntersect(float top1, float top2,
 void Game::cleanup()
 { 
    // cleanup objects
-	std::vector<Indie*>::iterator iter = m_indies.begin();
+	INDIE_LIST::iterator iter = m_indies.begin();
 	while( iter != m_indies.end() )
 	{
       if((*iter)->isMarkedForDeletion())
@@ -78,12 +129,24 @@ void Game::cleanup()
       else
          ++iter;
 	}
+	MONEY_LIST::iterator iter2 = m_moneys.begin();
+	while( iter2 != m_moneys.end() )
+	{
+      if((*iter2)->isMarkedForDeletion())
+      {
+         (*iter2)->Destroy();
+         delete (*iter2);
+         iter2 = m_moneys.erase(iter2);
+      }
+      else
+         ++iter2;
+	}
 }
 void
 Game::update(float dt)
 {  
    // update game objects
-	std::vector<Indie*>::iterator iter = m_indies.begin();
+	INDIE_LIST::iterator iter = m_indies.begin();
 	while( iter != m_indies.end() )
 	{
 		(*iter)->Update(dt);
@@ -108,6 +171,24 @@ Game::update(float dt)
          m_tim->Collided( (*iter) );
          (*iter)->Collided(m_tim);
 		}
+
+		MONEY_LIST::iterator moneyIter = m_moneys.begin();
+		while( moneyIter != m_moneys.end() )
+		{
+			if(RectanglesIntersect(indiePos.Y, (*moneyIter)->GetPosition().Y,
+										  indiePos.Y + indieSize.Y, (*moneyIter)->GetPosition().Y + (*moneyIter)->GetSize().Y,
+										  indiePos.X,(*moneyIter)->GetPosition().X,
+										  indiePos.X + indieSize.X, (*moneyIter)->GetPosition().X + (*moneyIter)->GetSize().X))
+			{
+				Vector2 formerSize = (*iter)->GetSize();
+				(*iter)->SetSize(formerSize.X * 2, formerSize.Y * 2);
+				(*moneyIter)->Collided( (*iter) );
+			}
+
+			++moneyIter;
+		}
+
+
 		++iter;
 	}
 

@@ -1,6 +1,7 @@
 
 #include "Indie.h"
 #include "MathUtil.h"
+#include "Game.h"
 #include <assert.h>
 
 // HAUKAP - for cheezy collision
@@ -13,7 +14,8 @@ using namespace Edge;
 Indie::Indie() : 
    m_state(eLiving),
    m_dyingCounter(0)
-{}
+{
+}
 Indie::~Indie()
 {}
 
@@ -22,7 +24,7 @@ void Indie::Collided(const Tim*)
    if(!isDead())
    {
 	   m_state = eDying;
-	   SetColor( 0.0f, 1.0f, 0.0f );
+	   SetColor( 0.5f, 1.0f, 0.5f );
    }
 }
 void Indie::Collided(const Indie*)
@@ -45,7 +47,7 @@ void Indie::Update(float dt)
          m_state = eDead;
       break;
    case eDead:
-      break;;
+      break;
    case eDeleteMe:
       break;
    default:

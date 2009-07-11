@@ -37,6 +37,7 @@ namespace CDH
 			};
 			IndieState m_state;
          CHUint m_dyingCounter;
+			std::vector<Indie*> m_adjacentIndies; 
 		};
 	}
 }
