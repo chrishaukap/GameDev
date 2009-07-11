@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc8\$(ConfigurationName)\lib_utils.lib"
+				OutputFile="..\..\lib\win32\$(ConfigurationName)\lib_utils.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -128,7 +128,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc8\$(ConfigurationName)\lib_utils.lib"
+				OutputFile="..\..\lib\win32\$(ConfigurationName)\lib_utils.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
