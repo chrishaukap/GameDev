@@ -172,6 +172,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc"
 			>
 			<File
+				RelativePath="..\..\include\BasicFastDispatcher.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\cdhBase.h"
 				>
 			</File>
