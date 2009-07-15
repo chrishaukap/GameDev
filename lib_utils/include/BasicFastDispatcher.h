@@ -1,23 +1,12 @@
 #ifndef BASICFAST_DISPATCHER_H
 #define BASICFAST_DISPATCHER_H
 
+#include "indexableClass.h"
+
 #include <vector>
 #include <assert.h>
 namespace CDH
 {
-
-#define IMPLEMENT_INDEXABLE_CLASS(SomeClass)\
-   static int& GetClassIndexStatic()\
-   {\
-      static int index = -1;\
-      return index;\
-   }\
-   virtual int& GetClassIndex()\
-   {\
-      /*assert(typeid(*this) == typeid(SomeClass));*/\
-      return GetClassIndexStatic();\
-   }
-
    template
    <
       class BaseLhs,

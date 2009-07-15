@@ -180,6 +180,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\indexableClass.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\thread.h"
 				>
 			</File>
