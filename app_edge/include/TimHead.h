@@ -14,7 +14,6 @@ namespace CDH
 			~TimHead();
 
 			void Update(float dt);
-
 		private:
 		};
 	}

@@ -1,11 +1,7 @@
 
 #include "Indie.h"
 #include "MathUtil.h"
-#include "Game.h"
 #include <assert.h>
-
-// HAUKAP - for cheezy collision
-#include "Tim.h"
 
 using namespace CDH;
 using namespace Edge;
@@ -18,17 +14,12 @@ Indie::Indie() :
 }
 Indie::~Indie()
 {}
-
-void Indie::Collided(const Tim*)
+void
+Indie::killMe()
 {
-   if(!isDead())
-   {
-	   m_state = eDying;
-	   SetColor( 0.5f, 1.0f, 0.5f );
-   }
-}
-void Indie::Collided(const Indie*)
-{
+	if(!isDead())
+		m_state = eDying;	
+	SetColor( 0.5f, 1.0f, 0.5f );
 }
 
 void Indie::Update(float dt)
@@ -37,6 +28,7 @@ void Indie::Update(float dt)
    {
    case eLiving:
       {
+
 	      const float dPos = 0;	
 	      SetPosition( _position.X + dt * MathUtil::randomizeValue(dPos, 5.0f),
 					       _position.Y + dt * MathUtil::randomizeValue(dPos, 5.0f));

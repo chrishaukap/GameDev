@@ -4,6 +4,7 @@
 #include "MouseInput.h"
 #include "Vector2.h"
 #include "VecStructs.h"
+#include "iCollidable.h"
 
 namespace CDH
 {
@@ -11,8 +12,7 @@ namespace CDH
 	{
       class TimHead;
       class TimTail;
-		class Indie;  //HAUKAP - CHEEZEY COLLISION DETECTION
-      class Tim : public MouseListener
+      class Tim : public MouseListener, public iCollidable
 		{
 		public:
 			Tim();
@@ -25,7 +25,6 @@ namespace CDH
 			const Vector2 GetPosition();
 			const Vector2 GetSize();
 
-			void Collided(const Indie*);
          void GrowTail();
 
 	      // inherited from MouseListener
@@ -33,6 +32,7 @@ namespace CDH
 	      void MouseUpEvent(Vec2i screenCoordinates, MouseButtonInput button);
 	      void MouseMotionEvent(Vec2i screenCoordinates);
 
+         IMPLEMENT_INDEXABLE_CLASS(Tim)
 		private:
          TimHead* m_head;
          TimTail* m_tail;

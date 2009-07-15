@@ -7,7 +7,7 @@
 
 int main(int argc, char* argv[])
 {
-	theWorld.Initialize(argc, argv, 400,300,200,700);
+	theWorld.Initialize(argc, argv, 400,300,200,600);
 
 	theWorld.SetGameManager(&theEdgeGame);
 	

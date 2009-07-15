@@ -5,8 +5,6 @@
 #include "TimTail.h"
 #include "World.h"
 
-// because of LAME collision system
-#include "Indie.h"
 #define TIM_SPEED 10.0f
 
 using namespace CDH;
@@ -53,9 +51,6 @@ void
 Tim::GrowTail()
 {
    m_tail->addTailNode();
-}
-void Tim::Collided(const Indie* indie)
-{
 }
 
 static bool g_mouseOn = false;

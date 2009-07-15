@@ -5,18 +5,34 @@
 #include "Tim.h"
 #include "World.h"
 #include "MathUtil.h"
+#include "BasicFastDispatcher.h"
+#include "collisions.h"
 
 #include <assert.h>
 using namespace CDH;
 using namespace Edge;
 #define NUM_INDIES 16
-#define NUM_MONEYS 16
+#define NUM_MONEYS 8
+
+namespace 
+{
+   BasicFastDispatcher<iCollidable> g_basicFastDispatcher;
+   bool g_initted = false;
+}
 
 Game::Game(CHUint rows, CHUint cols) :
 	m_indies(),
 	m_moneys(),
    m_tim()
-{}
+{
+   if(!g_initted)
+   {
+      g_initted = true;
+		g_basicFastDispatcher.Add<Indie,Indie>(CollisionIndieIndie);
+		g_basicFastDispatcher.Add<Money,Indie>(CollisionMoneyIndie);
+		g_basicFastDispatcher.Add<Tim,Indie>(CollisionTimIndie);
+   }
+}
 Game::~Game()
 {}
 void 
@@ -134,6 +150,7 @@ void Game::cleanup()
 	{
       if((*iter2)->isMarkedForDeletion())
       {
+			theWorld.Remove((*iter2));
          (*iter2)->Destroy();
          delete (*iter2);
          iter2 = m_moneys.erase(iter2);
@@ -167,9 +184,7 @@ Game::update(float dt)
                              indiePos.X,timPos.X,
                              indiePos.X + indieSize.X, timPos.X + timSize.X))
       {
-         // process Tim's collisions first (depends on Indie being alive)
-         m_tim->Collided( (*iter) );
-         (*iter)->Collided(m_tim);
+         g_basicFastDispatcher.Go(*m_tim, *(*iter));
 		}
 
 		MONEY_LIST::iterator moneyIter = m_moneys.begin();
@@ -180,9 +195,7 @@ Game::update(float dt)
 										  indiePos.X,(*moneyIter)->GetPosition().X,
 										  indiePos.X + indieSize.X, (*moneyIter)->GetPosition().X + (*moneyIter)->GetSize().X))
 			{
-				Vector2 formerSize = (*iter)->GetSize();
-				(*iter)->SetSize(formerSize.X * 2, formerSize.Y * 2);
-				(*moneyIter)->Collided( (*iter) );
+            g_basicFastDispatcher.Go( *(*moneyIter), *(*iter));
 			}
 
 			++moneyIter;

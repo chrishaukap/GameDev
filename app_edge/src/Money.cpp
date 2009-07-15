@@ -2,11 +2,6 @@
 #include "Money.h"
 #include <assert.h>
 
-// HAUKAP - for cheezy collision
-#include "Tim.h"
-#include "Indie.h"
-#include "World.h"
-
 using namespace CDH;
 using namespace Edge;
 
@@ -17,14 +12,3 @@ Money::Money() :
 }
 Money::~Money()
 {}
-
-void Money::Collided(const Tim*)
-{
-	m_state = eDeleteMe;
-	theWorld.Remove( this );
-}
-void Money::Collided(const Indie*)
-{
-	m_state = eDeleteMe;
-	theWorld.Remove( this );
-}
