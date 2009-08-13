@@ -112,6 +112,15 @@ void PhysicsActor::ApplyImpulse(const Vector2& impulse, const Vector2& point)
 		_physBody->ApplyImpulse(b2Vec2(impulse.X, impulse.Y), b2Vec2(point.X + _position.X, point.Y + _position.Y));
 	}
 }
+void PhysicsActor::GetLinearVelocity(Vector2& linearVelocity)
+{
+	if (_physBody != NULL)
+	{
+		b2Vec2 tmpLinearVelocity = _physBody->GetLinearVelocity();
+		linearVelocity.X = tmpLinearVelocity.x;
+		linearVelocity.Y = tmpLinearVelocity.y;
+	}
+}
 
 void PhysicsActor::SetSize(float x, float y)
 {

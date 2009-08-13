@@ -27,6 +27,7 @@ public:
 	void ApplyLocalForce(const Vector2& force, const Vector2& point);	// apply a local space force on the object
 	void ApplyTorque(float torque);
 	void ApplyImpulse(const Vector2& impulse, const Vector2& point);
+	void GetLinearVelocity(Vector2& linearVelocity) ;
 
 	// note, wake the body before applying velocities or it will continue sleeping (if it was)
 	b2Body *GetBody() { return _physBody; }
