@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--Combat Prototype configurable properties-->
+<!--Created On: 23-Jul-2009-->
+<!--===============================-->
+<Game Name="Combat Prototype">
+  <GlobalProperties>
+    <DebugProperties>
+      <DrawGrid>false</DrawGrid>
+      <DrawHealth>false</DrawHealth>
+      <DrawAgentTargetLines>false</DrawAgentTargetLines>
+      <DrawAgentStates>false</DrawAgentStates>
+      <DrawGrandSlamCircles>true</DrawGrandSlamCircles>
+      <DrawStunStatus>true</DrawStunStatus>
+      <DrawKnockBackStatus>true</DrawKnockBackStatus>
+      <FastCombat>false</FastCombat>      
+    </DebugProperties>
+	 <PathFindingProperties>
+	   <GridWidth>800</GridWidth>
+	   <GridHeight>600</GridHeight>
+	   <DistanceBetweenNodes>800</DistanceBetweenNodes>
+	 </PathFindingProperties>
+  </GlobalProperties>
+  <AgentProperties>
+    <Initialization>
+      <!-- OPTIONS: RandomSkirmishes, Random, OpposingSides, Star, Empty-->
+      <SetupOption>OpposingSides</SetupOption>
+      <RandomSkirmishes></RandomSkirmishes><!-- doesn't really work yet... -->
+      <Random>
+        <MaxAgentsPerTeam>100</MaxAgentsPerTeam>
+        <MinAgentsPerTeam>50</MinAgentsPerTeam>
+        <MaxPlacementWidth>800</MaxPlacementWidth>
+        <MaxPlacementHeight>600</MaxPlacementHeight>         
+      </Random>
+      <OpposingSides></OpposingSides>
+      <Star></Star><!-- doesn't really work yet... -->
+    </Initialization>
+    <VariableSize>false</VariableSize>
+    <Ability Name="GrandSlam">
+      <Radius>100</Radius>
+      <Damage>2</Damage>
+      <StunDuration>100</StunDuration>
+      <KnockBackSpeed>3</KnockBackSpeed>
+    </Ability>
+    <Ability Name="SuperKnockBack">
+      <Speed>6</Speed>
+      <Damage>3</Damage>
+    </Ability>
+    <Ability Name="CircleKick" />
+    <Ability Name="Tornado">
+      <Speed>1</Speed>
+      <Duration>200</Duration>
+      <Degrees>45</Degrees>
+      <Damage>1</Damage>
+      <Range>200</Range>
+    </Ability>
+    <Ability Name="Roar">
+      <Degrees>50</Degrees>
+      <Range>200</Range>
+      <KnockBackSpeed>0.75</KnockBackSpeed>
+      <Duration>200</Duration>
+      <StunDuration>50</StunDuration>
+    </Ability>
+  </AgentProperties>
+</Game>
