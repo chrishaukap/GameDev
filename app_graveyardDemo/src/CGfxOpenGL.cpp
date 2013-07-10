@@ -7,7 +7,7 @@ using namespace CDH;
 
 #include <gl/gl.h>
 #include <gl/glu.h>
-#include <gl/glut.h>
+//#include <gl/glut.h>
 #include <gl/glaux.h>		// Header File For The Glaux Library
 
 #include <string> 
@@ -127,7 +127,7 @@ static void ShowMessage(const Vector3& p,
       glScalef(size,size,size);
       while (*msg) 
       {
-         glutStrokeCharacter(GLUT_STROKE_ROMAN, *msg);
+         //glutStrokeCharacter(GLUT_STROKE_ROMAN, *msg);
          msg++;
       }
 
@@ -145,7 +145,7 @@ static void ShowDebugMessage(const Vector3& p,
       glScalef(0.004f,0.004f,0.004f);
       while (*msg) 
       {
-         glutStrokeCharacter(GLUT_STROKE_ROMAN, *msg);
+         //glutStrokeCharacter(GLUT_STROKE_ROMAN, *msg);
          msg++;
       }
       glEnable(GL_LIGHTING);

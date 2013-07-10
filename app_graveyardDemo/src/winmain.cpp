@@ -78,11 +78,14 @@ public:
    }
    void render()
    {
+BLAH:
       switch(m_state)
       {
       case StateInit: assert(!"NOT INITIALIZED"); break;
       case StateMenu: 
-         m_renderer.renderMenu();
+		 m_state = StateRunning;  // HAUKAP - menu isn't working... skip it
+		 goto BLAH;
+		 m_renderer.renderMenu();
          break;
       case StateRunning:
          m_renderer.render();
