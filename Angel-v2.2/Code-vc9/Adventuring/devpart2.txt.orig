@@ -1,0 +1,45 @@
+goals for sprint 2 of development
+=====================================
+
+* Decision making system (Objetive Selection)
+   - Very Objective specific... no upfront work here?
+   - just simple decision making for hunger/provisions/weariness/laziness & find
+     next nearest arcane school when first one blows up
+
+* Allow for events [done for me by angel]
+   - (causes interruptions in current objective & an immediate re-evaluation of priorities)
+   - Arcane school burned down? (hero has chance to blow up school -- int/perception/alignment/arcane ability)
+
+* Hero camping/resting/healing/using provisions [done]
+* eating/resting/regen fatigue (laziness causes more indulgent behavior here) [done]
+* Hunting/foraging [done]
+   - takes time, refills provisions, success based off of archery/etc.
+   - int/laziness/location/hunger determines when hero hunts  
+
+
+goals for sprint 3 of development
+=======================================
+* make detail view accurately reflect what is happening in combat
+    - Monsters reflect that they're losing health, monsters can die off/etc.
+    - (events fired from game world and responded-to by detail view
+
+* make hero hunt monsters after he's finished researching 
+
+* make some monsters hunt down hero (using TravelTo Objective?)
+
+* construct Terrain grid which describes the terrain in world view.
+    - things like: (tree density, water/mountain/hills/desert/plains/forest tile)
+    - world view generates terrain based off this grid (no need to be exact) (in the future, won't cross water tiles without boat or waterwalk)
+    - 
+
+* once terrain grid describes the adventuring world, detail view can query it for what to draw in detail screen
+    - simple scenario: traveling through lightly forested flat terrain.  Picture Hero hiking with travel sack on a trail over flat
+                       grassy terrain.  The occasional Tree passes view in foremost background.  Background will be composed of surrounding
+                       terrain grid -- see next bullet point
+    - complex scenario:  combat engaged when hero was camping for the night in dense Jungle.  Hero is battling monster around a campfire.
+                         tent is setup somewhere.  The foreground has tree trunk sillouettes (and underbrush).
+                         The foremost background has more underbrush and tree trunks and canopy. 
+
+* detail view background will be composed of important/high visibility elements from the adjacent areas in the world terrain grid.  
+      for example, if the heros current grid cell is next to a mountain cell with a wizards tower in it, 
+      the background will have mountains and distant wizard's tower.

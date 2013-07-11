@@ -1,0 +1,81 @@
+#include "stdafx.h"
+
+#include "Objectives/Objective.h"
+
+Objective::Objective() :
+   m_cannotComplete(false)
+{}
+Objective::~Objective()
+{
+   std::list<Objective*>::iterator iter = m_prereqs.begin();
+   while( iter != m_prereqs.end())
+   {
+      delete (*iter); (*iter) = NULL;
+      ++iter;
+   }
+   m_prereqs.clear();
+}
+const std::string& 
+Objective::name() const 
+{
+   return m_name;
+}
+const Objective&
+Objective::activeObjective() const 
+{
+   return currentObjective();
+}
+
+const Objective& Objective::currentObjective() const
+{
+   if(m_prereqs.empty())
+      return (*this);
+   else
+      return m_prereqs.front()->currentObjective();
+}
+bool Objective::hasPrereqs() const 
+{
+   return !m_prereqs.empty();
+}
+bool Objective::arePrereqsComplete() const
+{
+   std::list<Objective*>::const_iterator iter = m_prereqs.begin();
+   while( iter != m_prereqs.end())
+   {
+      if(! (*iter)->isComplete())
+         return false;
+      ++iter;
+   }
+   return true;
+}
+void Objective::workOnPrereqs(float dt)
+{
+   assert(!m_prereqs.empty());
+   m_prereqs.front()->doWork(dt);
+
+   if(m_prereqs.front()->isComplete())
+   {
+      delete m_prereqs.front();
+      m_prereqs.pop_front();
+   }
+   else if(m_prereqs.front()->cannotComplete())
+   {
+      // HAUKAP - might want to be smarter here.. why can't we complete it?  should we try again?
+      delete m_prereqs.front();
+      m_prereqs.pop_front();
+   }
+}
+void Objective::doWork(float dt)
+{
+   if(hasPrereqs())
+      workOnPrereqs(dt);
+   else
+      applyWork(dt);
+}
+
+bool Objective::isComplete() const
+{
+   if( arePrereqsComplete() )
+      return objectiveMet();
+   return false;
+}

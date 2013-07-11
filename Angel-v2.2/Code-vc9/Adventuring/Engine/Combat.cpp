@@ -1,0 +1,115 @@
+#include "stdafx.h"
+
+#include "Engine/Combat.h"
+#include "Engine/Combatant.h"
+
+Combat::Combat(std::list<Combatant*> force1,
+               std::list<Combatant*> force2) : 
+   m_force1(force1),
+   m_force2(force2),
+   m_combatDuration(0),
+   m_combatRoundCount(0)
+{   
+}
+
+Combat::~Combat() 
+{
+      std::list<Combatant*>::iterator iter = m_force1.begin();
+      while(iter != m_force1.end())
+      {
+         (*iter)->SetCombat(NULL);
+         ++iter;
+      }
+      iter = m_force2.begin();
+      while(iter != m_force2.end())
+      {
+         (*iter)->SetCombat(NULL);
+         ++iter;
+      }
+}
+
+bool Combat::combatOver() const
+{
+  return m_force1.size() == 0 || m_force2.size() == 0;
+}
+
+void Combat::RemoveDeadCombatants()
+{
+   {
+      std::list<Combatant*> rmforce1;
+
+      std::list<Combatant*>::iterator iter = m_force1.begin();
+      while(iter != m_force1.end())
+      {
+         if((*iter)->isDead())
+         {
+            (*iter)->Destroy();
+            rmforce1.push_back(*iter);
+         }
+         ++iter;
+      }
+
+      iter = rmforce1.begin();
+      while( iter != rmforce1.end())
+      {
+         (*iter)->SetCombat(NULL);
+         m_force1.remove( *iter );
+         ++iter;
+      }
+   }
+   
+   {
+      std::list<Combatant*> rmforce2;
+
+      std::list<Combatant*>::iterator iter = m_force2.begin();
+      while(iter != m_force2.end())
+      {
+         if((*iter)->isDead())
+         {
+            (*iter)->Destroy();
+            rmforce2.push_back(*iter);
+         }
+         ++iter;
+      }
+
+      iter = rmforce2.begin();
+      while( iter != rmforce2.end())
+      {
+         (*iter)->SetCombat(NULL);
+         m_force2.remove( *iter );
+         ++iter;
+      }
+   }
+
+}
+void Combat::ExecuteRound()
+{
+   // HAUKAP - very simplified combat for now
+   std::list<Combatant*>::iterator force1iter = m_force1.begin();
+   std::list<Combatant*>::iterator force2iter = m_force2.begin();
+
+   while( force1iter != m_force1.end())
+   {
+      (*force1iter)->applyCombatFatigue(1);
+      (*force1iter)->applyDamage(1);     
+      ++force1iter;
+   }
+   while( force2iter != m_force2.end())
+   {
+      (*force2iter)->applyCombatFatigue(1);
+      (*force2iter)->applyDamage(1);
+      ++force2iter;
+   }
+   RemoveDeadCombatants();
+}
+static int CombatRoundDuration = 1;
+void Combat::Update(float dt)
+{   
+   m_combatDuration += dt;
+   int accumSeconds = (int)m_combatDuration;
+   if( accumSeconds - m_combatRoundCount >= CombatRoundDuration )
+   {
+      ExecuteRound();
+      ++m_combatRoundCount;
+   }
+}

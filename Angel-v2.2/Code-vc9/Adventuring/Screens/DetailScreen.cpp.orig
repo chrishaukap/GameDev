@@ -1,0 +1,303 @@
+#include "stdafx.h"
+#include "DetailScreen.h"
+#include "Engine/Hero.h"
+#include "Engine/GameWorld.h"
+#include "Engine/Combat.h"
+
+#define UPPER_LEFT_CORNER Vector2(-10,9) 
+
+static Vector3 s_CameraPosition;
+static std::vector<Actor*> s_backgroundElements;
+static TextActor* s_actor = NULL;
+static Actor* s_hero = NULL;
+static std::map<Combatant*, Actor*> s_monsterMap; // HAUKAP - don't store the hero in this list... as he persists from state to state
+
+std::vector<std::string> s_monsterArtList;
+static void InitMonsterArtList()
+{
+   s_monsterArtList.push_back(std::string("Resources/Images/monster.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster1.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster2.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster3.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster4.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster5.png"));
+   s_monsterArtList.push_back(std::string("Resources/Images/monster6.png"));
+}
+std::vector<std::string> s_treeArtList;
+static void InitTreeArtList()
+{
+   s_treeArtList.push_back(std::string("Resources/Images/tree1.png"));
+   s_treeArtList.push_back(std::string("Resources/Images/tree2.png"));
+   s_treeArtList.push_back(std::string("Resources/Images/tree3.png"));
+   s_treeArtList.push_back(std::string("Resources/Images/tree4.png"));
+}
+
+DetailScreen::DetailScreen(unsigned int screenWidth, unsigned int screenHeight) :
+   m_actorLayerMap()
+{
+   m_screenWidth = screenWidth;
+   m_screenHeight = screenHeight;
+}
+DetailScreen::~DetailScreen()
+{
+
+}
+
+void DetailScreen::doStop()
+{
+/*   ActorLayerMap::iterator iter = m_actorLayerMap.begin();
+   while( iter != m_actorLayerMap.end())
+   {
+      delete iter->first;
+      ++iter;
+   }
+   m_actorLayerMap.clear();
+   delete s_hero; s_hero = NULL;
+   delete s_actor; s_actor = NULL;
+      
+   size_t sz = s_backgroundElements.size();
+   for( size_t i=0; i<sz; ++i)
+      //s_backgroundElements[i]->Destroy();
+      delete s_backgroundElements[i]; s_backgroundElements[i] = NULL;*/
+}
+void DetailScreen::doStart()
+{
+   /*theSwitchboard.SubscribeTo(this, "CombatEnding");
+	
+   InitMonsterArtList();
+   InitTreeArtList();
+   
+   s_CameraPosition = Vector3(0,0,10.0);
+
+   s_actor = new TextActor("Console", "");
+   s_actor->SetSize(1.0f);
+   s_actor->SetColor(0,1,0);
+   s_actor->SetPosition(UPPER_LEFT_CORNER);
+   s_actor->SetDisplayString("blah");   
+   
+   s_hero = new Actor;
+   s_hero->SetSprite("Resources/Images/travel.png");
+   s_hero->SetPosition(2,0);
+   s_hero->SetSize(3.0f);
+   s_hero->SetColor(1,1,1,1);
+
+   doResume();*/
+}
+
+void DetailScreen::doPause()
+{
+/*   ClearCombatRenderables();
+   ClearRenderablesInScreen();
+   s_CameraPosition = theCamera.GetPosition3();
+*/}
+void DetailScreen::doResume()
+{/*
+   AddRenderable(s_actor, 10);
+   AddRenderable(s_hero, 3);
+
+   ActorLayerMap::iterator iter = m_actorLayerMap.begin();
+   while( iter != m_actorLayerMap.end())
+   {
+      AddRenderable( iter->first, iter->second );
+      ++iter;
+   }
+
+   std::map<Combatant*, Actor*>::iterator iter2 = s_monsterMap.begin();
+   while( iter2 != s_monsterMap.end())
+   {
+      AddRenderable( iter2->second, 10 );
+      ++iter2;
+   }
+
+   theCamera.SetPosition(s_CameraPosition);*/
+}
+void DetailScreen::UpdateDebug()
+{
+/*   const Hero& hero = theGameWorld.hero();
+   s_actor->SetDisplayString(hero.stateToString());*/
+}
+
+void DetailScreen::ClearCombatRenderables()
+{
+   std::map<Combatant*, Actor*>::iterator iter = s_monsterMap.begin();
+   while( iter != s_monsterMap.end())
+   {
+      theWorld.Remove((*iter).second);
+      delete (*iter).second; (*iter).second = NULL;
+      ++iter;
+   }
+   s_monsterMap.clear();
+}
+void DetailScreen::GenerateNewCombatScene()
+{/*
+   // clear old scene
+   ClearCombatRenderables();
+
+   const CombatForce& force1 = theGameWorld.hero().GetCombat()->force1();
+   const CombatForce& force2 = theGameWorld.hero().GetCombat()->force2();
+
+   assert(force1.front() == &(theGameWorld.hero()));
+
+   CombatForce::const_iterator monsterIter = force2.begin();
+   while( monsterIter != force2.end())
+   {
+      Actor *monster = new Actor();
+      monster->SetPosition(-4,0);
+      monster->SetSize(3.0f);
+      monster->SetColor(1,1,1,1);
+      
+      int rand = MathUtil::RandomIntInRange(0, (int)s_monsterArtList.size());
+      monster->SetSprite(s_monsterArtList[rand]);
+      AddRenderable(monster, 10);
+      theWorld.Add(monster, 10);
+      
+      s_monsterMap[*monsterIter] = monster;
+      ++monsterIter;
+   }*/
+}
+static bool s_inCombatLastUpdate = false;
+void DetailScreen::UpdateCombatScene()
+{/*
+   if(!s_inCombatLastUpdate)
+   {
+      assert(theGameWorld.hero().inCombat());
+      GenerateNewCombatScene();
+      s_inCombatLastUpdate = true;
+   }*/
+
+/*
+   Actor* heroActor = new Actor;
+   const Hero& hero = theGameWorld.hero();
+   switch(hero.state())
+   {
+      case Hero::Hunting:
+      case Hero::Camping:
+         {
+            Actor* campfire = new Actor;
+            campfire->SetName("campfire");
+            campfire->SetPosition(2,0);
+            campfire->SetSize(1.0f);
+            campfire->SetColor(1,1,1,1);
+            campfire->SetSprite("Resources/Images/fire.png");
+            AddRenderable(campfire, 2);
+            m_actors.push_back(campfire);  
+         }
+      case Hero::Travel:
+      case Hero::ArcaneTraining: 
+         {
+            Actor* heroActor = new Actor;
+            heroActor->SetName("heroRender");
+            heroActor->SetPosition(2,2);
+            heroActor->SetSize(1.0f);
+            heroActor->SetColor(1,1,1,1);
+            heroActor->SetSprite("Resources/Images/combat.png");
+            AddRenderable(heroActor, 2);
+            m_actors.push_back(heroActor);            
+         }
+         break;
+      case Hero::ArcheryTraining:
+      case Hero::MartialTraining:
+      case Hero::Researching:
+      case Hero::Resting:
+      default: assert(!" Unknown HeroState");
+   }*/
+}
+
+
+
+void DetailScreen::UpdateBackGround()
+{   
+   // HAUKAP detail view background population
+   //    check our cached grid cell against Hero's current grid cell.  
+   //    If different, we have to augment our renderable list with information from the new cell
+   //         ie., change the tree population density to match the new cell's terrain type.
+   //              change terrain art assets to match.  Background may gain new elements according to 
+   //              the newly adjacent grid cells
+   //    Terrain Assets can be culled from our rendering list when they've gone offscreen.    
+   //     
+
+   /*for(int i=0; i< 20; ++i)
+   {
+      float spacer = MathUtil::RandomFloatInRange(0, 5.0f);
+
+      Actor* tree = new Actor;
+      tree->SetPosition( -i * 7 + spacer,0);
+      tree->SetSize(5.0f);
+      tree->SetColor(1,1,1,1);
+      tree->SetSprite(s_treeArtList[MathUtil::RandomIntInRange(0,s_treeArtList.size())]);
+      AddRenderable(tree, 0);
+      s_backgroundElements.push_back(tree);
+   }*/
+}
+
+
+void DetailScreen::doUpdate(float dt)
+{   /*
+   UpdateBackGround();
+   
+   const Hero& hero = theGameWorld.hero();
+   if(hero.inCombat())
+   {      
+      UpdateCombatScene();
+      s_hero->SetSprite("Resources/Images/combat.png");         
+   }
+   else if(s_inCombatLastUpdate)
+   {
+      s_inCombatLastUpdate  = false;
+      // combat just ended
+
+      ClearCombatRenderables();
+   }
+   else
+      switch(hero.state())
+      {
+      case Hero::ArcaneTraining:  
+         {
+            s_hero->SetSprite("Resources/Images/research.png");
+         }
+         break;
+      case Hero::ArcheryTraining: break;
+      case Hero::MartialTraining: break;
+      case Hero::Camping:
+      case Hero::Hunting: 
+         {
+            s_hero->SetSprite("Resources/Images/hunting.png");
+         }
+         break;
+      case Hero::Researching: break;
+      case Hero::Resting: break;
+      case Hero::Travel:  
+         {
+            s_hero->SetSprite("Resources/Images/travel.png");
+         }
+         break;
+      default: assert(!" Unknown HeroState");
+      }   
+
+   // the last thing we do is scroll all elements at a speed to match the Hero's
+   {
+      const float scrollRate = 0.01f;
+      size_t sz = s_backgroundElements.size();
+      for(size_t i=0; i<sz; ++i)
+         s_backgroundElements[i]->SetPosition(
+             s_backgroundElements[i]->GetPosition().X + scrollRate,
+             s_backgroundElements[i]->GetPosition().Y);
+   }
+   UpdateDebug();
+*/
+}
+
+void DetailScreen::ReceiveMessage(Message *message)
+{
+	if (message->GetMessageName() == "CombatEnding")
+	{
+      TypedMessage<const Combat*> *m = 
+         dynamic_cast<TypedMessage<const Combat*>* >(message);
+		
+		const Combat* endingCombat = m->GetValue();
+		const Hero& hero = theGameWorld.hero();
+      //// HAUKAP - BROKEN -- assert(endingCombat == hero.GetCombat());
+
+      // HAUKAP - do something with the combat now we know it's ending
+	}
+}

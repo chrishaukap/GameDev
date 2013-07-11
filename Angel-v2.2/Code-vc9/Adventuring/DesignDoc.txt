@@ -1,0 +1,88 @@
+=====================================================
+Adventuring is Difficult
+=====================================================
+
+=====================================================
+The Prototype
+=====================================================
+
+just focus on the AI adventurer.  His over-arching life objective... his AI chosen sub-objectives and paths.
+scrolling around the map / representation of world state.
+zooming in on our minion at any point in the world (and switching to 2d rendered scene of that area)
+  - rendered scene will loosely incorporate the game map's location (terrain, indoors/outdoors, etc.)  
+    we want to make it fun and interesting to log in and see what your adventurer/minion is up to.
+    
+prototype features
+-----------------
+good/evil minion
+simple long-term goal selectable at creation(Kill some uber bad guy.. generally be awesome, etc.) 
+a few sub-goals (selectable in game-time)
+   
+  
+things to program:
+1) Sub-Goal selection engine
+   Given a long-term goal and a list of goals that will assist the player in achieving the long-term goal (to varying degrees), 
+   select a sub-goal that will get the avatar closer to achieving the long-term goal.
+2)
+
+things to flesh out/design
+1)  
+   
+
+
+=====================================================
+The Game
+=====================================================
+
+players vicariously control a minion (through commands/instructions) in an online persistent world through usage of commands/actions/goals/etc.
+the player is a diety, the a
+* char gen
+   1
+   1) assign character background elements (will cost/grant chargen points and will have positive/negative affects on your character)
+                
+   2) assign stat points to:
+        strength/agility/precision/perception/intuition/charisma/looks/speed/initiative/motivation/luck
+   
+   3) assign ambitions/goals
+        player chooses from a list of potential life-long goals that their minion will strive to attain.
+        the minion determines a few sub-goals that if achieved would put him/her closer to his/her life-long goals.
+        Sub-goals can further be divided into sub-sub-goals that become more & more environment/situation dependent.
+          examples: 
+             survive:  an intelligent minion might do research on safest cities to dwell in and might never enter dark alleys.
+                       a wise minion might start building an underground quarters and stocking it with food/water/supplies.
+             become a Time traveler:       
+             Become a Deadly assassin:
+             become wealthy:  
+             become a King:  a charismatic minion might start engaging in politics.  making friends and performing deeds to spread word of his heroism.
+                             a intelligent/cunning (and evil) minion might research polymorphing, shapeshift into the likeness of a living king, murder that king and assume his role.                       
+             Have multiple wives:  
+             Have many children:  
+             Unite the world under one religion:  
+             find a solution for World Hunger:
+             Become a Necromancer:  the minion will need to gather information/knowledge on necromancy, find books/tomes that talk about it and quest to find necromantic sites/rituals/relics.
+             Achieve Lichdom:  
+             Attract followers and worshipers:
+             
+   4) Alignment
+        overarching character alignment (good/evil/chaotic/lawful/etc) - will help in guiding minion's AI
+        
+   5) Diety Aspect
+        aspect/attributes of your own Godhood.  ie., God of Death, war, the hearth, sun, moon, etc.  Will unlock/enable certain abilities/skills/spells for your minion througout the game
+
+* player interaction
+   1) login and answer your minion's prayers.  The minion will offer up a prayer to the player (the minion's God) asking for advice (a question) or for a favor. 
+      - In the case of a question, answers will be multiple choice and can be used to guide nearterm actions of the minion. 
+      (if the minion is requesting advice on a pending event and does not receive feedback, AI will take over for any decision making involved in said event)
+      - In the case of a favor, the player can spend "God Points" to perform the favor.      
+
+* Acts of God - (activated through use of "God Points")
+   player can use "God Points" for a variety of things in the persistant game world to help his minion prosper/grow
+   examples:
+      Sense powerful artifacts - (powerful magic items are revealed to you on the map.  you can direct your minion to quest for that artifact)
+      scry on location - magically gather information on a map location (defenses/army strength/etc.)
+      scry on person - locate an individual anywhere in the world through magical means.
+      
+* possible objective
+   1) build up followers/faith to increase your power/influence over the mortal world as you construct your holy site where you will inevitably be reborn to exact your [un]holy plans
+   
+   

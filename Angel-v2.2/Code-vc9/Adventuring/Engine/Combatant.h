@@ -1,0 +1,49 @@
+#pragma once
+
+#include <map>
+typedef std::map<enum SpellID, class Spell*> Spells;
+
+class Combat;
+class Combatant: public Actor
+{
+public:
+   Combatant(std::string str);
+   virtual ~Combatant();
+
+   std::string name() const {return m_name;}
+   int intelligence() const {return m_intelligence;}
+   int health() const {return m_health;}
+   bool isDead() const {return m_health <= 0;}
+   float combatFatigue() const {return m_combatFatigue;}
+   int arcaneExperience() const {return m_arcaneExperience;}
+
+   void applyCombatFatigue( float fatigueToAdd);
+   void applyDamage( int damage);
+
+   virtual void SetCombat( const Combat* combat) {m_combat = combat;}
+   bool inCombat() const {return m_combat != NULL;}
+
+   void Update(float dt)
+   {
+      if(m_combat == NULL)
+         UpdateCombatant(dt);
+   }
+
+protected:
+   virtual void UpdateCombatant(float dt) = 0;
+   void levelUpArcane();
+   const Combat* m_combat;
+
+   std::string m_name;
+
+   // stats
+   int m_health;
+   int m_intelligence;
+   int m_motivation;
+   float m_combatFatigue;
+
+   // skills
+   int m_arcaneExperience;
+   int m_arcaneLevel;
+   Spells m_spells;
+};

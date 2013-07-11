@@ -1,0 +1,18 @@
+goals for sprint 2 of development
+=====================================
+
+* Decision making system (Objetive Selection)
+   - Very Objective specific... no upfront work here?
+   - just simple decision making for hunger/provisions/weariness/laziness & find
+     next nearest arcane school when first one blows up
+
+* Allow for events 
+   - (causes interruptions in current objective & an immediate re-evaluation of priorities)
+   - Arcane school burned down? (hero has chance to blow up school -- int/perception/alignment/arcane ability)
+
+* Hero camping/resting/healing/using provisions
+* eating/resting/regen fatigue (laziness causes more indulgent behavior here)
+* Hunting/foraging 
+   - takes time, refills provisions, success based off of archery/etc.
+   - int/laziness/location/hunger determines when hero hunts  
+

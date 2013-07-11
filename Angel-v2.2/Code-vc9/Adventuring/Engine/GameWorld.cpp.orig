@@ -1,0 +1,282 @@
+#include "stdafx.h"
+#include "Engine/GameWorld.h"
+#include "Engine/Hero.h"
+#include "Engine/Combat.h"
+#include "Engine/Monster.h"
+#include "Locations/ArcaneSchool.h"
+#include "Locations/GreatLibrary.h"
+#include "Objectives/BecomePowerfulWizard.h"
+
+static ArcaneLevelThresholdMap s_ArcaneLevelThresholds;
+static void initArcaneLevelThresholds()
+{
+   s_ArcaneLevelThresholds[1] = 100;
+   s_ArcaneLevelThresholds[2] = 250;
+   s_ArcaneLevelThresholds[3] = 500;
+   s_ArcaneLevelThresholds[4] = 1000;
+   s_ArcaneLevelThresholds[5] = 2500;
+   s_ArcaneLevelThresholds[6] = 5000;
+   s_ArcaneLevelThresholds[7] = 10000;
+   s_ArcaneLevelThresholds[8] = 20000;
+   s_ArcaneLevelThresholds[9] = 40000;
+   s_ArcaneLevelThresholds[10] = 80000;
+   s_ArcaneLevelThresholds[11] = 150000;
+}
+
+GameWorld* GameWorld::s_GameWorld = NULL;
+
+GameWorld& GameWorld::GetInstance()
+{
+	if (s_GameWorld == NULL)
+	{
+		s_GameWorld = new GameWorld();
+      initArcaneLevelThresholds();
+	}
+	return *s_GameWorld;
+}
+GameWorld::GameWorld() :
+   m_locations(),
+   m_monsters(),
+   m_hero(NULL)
+{
+   m_hero = new Hero();
+   m_hero->SetName("Hero");
+   m_hero->SetColor(1,0,0);
+   m_hero->SetPosition(10,10);
+   m_hero->SetSize(0.25f);
+   
+   GreatLibrary *library = new GreatLibrary("Great Library");
+   library->SetColor(0,1,0);
+   library->SetPosition(5,5);
+   library->SetSize(0.35f);
+   library->Type = Location::Library;
+   m_locations.push_back(library);
+
+   ArcaneSchool* arcaneSchool = new ArcaneSchool("School of the Arcane");
+   arcaneSchool->SetColor(0,0,1);
+   arcaneSchool->SetPosition(-7,-7);
+   arcaneSchool->SetSize(0.35f);
+   arcaneSchool->Type = Location::ArcaneSchool;
+   m_locations.push_back(arcaneSchool);
+   
+   arcaneSchool = new ArcaneSchool("School of the Arcane");
+   arcaneSchool->SetColor(0,0,1);
+   arcaneSchool->SetPosition(-14,7);
+   arcaneSchool->SetSize(0.35f);
+   arcaneSchool->Type = Location::ArcaneSchool;
+   m_locations.push_back(arcaneSchool);
+   
+   arcaneSchool = new ArcaneSchool("School of the Arcane");
+   arcaneSchool->SetColor(0,0,1);
+   arcaneSchool->SetPosition(7,14);
+   arcaneSchool->SetSize(0.35f);
+   arcaneSchool->Type = Location::ArcaneSchool;
+   m_locations.push_back(arcaneSchool);
+
+#if 0
+   Monster* monster =NULL;
+   const int range = 10;
+   for( int i=0; i<250; ++i)
+   {
+      monster = new Monster();
+      monster->SetColor(0.5f,0.5f,0.5f);
+      monster->SetPosition( 
+         MathUtil::RandomIntInRange(-range,range), 
+         MathUtil::RandomIntInRange(-range,range));
+      monster->SetSize(0.35f);
+      m_monsters.push_back(monster);
+   }
+#else
+   Monster* monster = new Monster();
+   monster->SetColor(0.5f,0.5f,0.5f);
+   monster->SetPosition( 6,6);
+   monster->SetSize(0.35f);
+   m_monsters.push_back(monster);
+
+   monster = new Monster();
+   monster->SetColor(0.5f,0.5f,0.5f);
+   monster->SetPosition( 5,5);
+   monster->SetSize(0.35f);
+   m_monsters.push_back(monster);
+
+   monster = new Monster();
+   monster->SetColor(0.5f,0.5f,0.5f);
+   monster->SetPosition( 4,4);
+   monster->SetSize(0.35f);
+   m_monsters.push_back(monster);
+#endif
+}
+GameWorld::~GameWorld()
+{
+   delete m_hero; m_hero = NULL;
+   Locations::iterator locIter = m_locations.begin();
+   while( locIter != m_locations.end())
+   {
+      delete (*locIter); (*locIter) = NULL;
+      ++locIter;
+   }
+   m_locations.clear();
+   
+   Monsters::iterator monIter = m_monsters.begin();
+   while( monIter != m_monsters.end())
+   {
+      delete (*monIter ); (*monIter) = NULL;
+      ++monIter ;
+   }
+   m_monsters.clear();
+   
+}
+
+void GameWorld::DebugInit()
+{
+   m_hero->pushObjective(new BecomePowerfulWizard(*m_hero));
+}
+
+
+static std::list<Combat*> s_activeCombats;
+static bool IsCollision(const Monster& monster, const Hero& hero)
+{
+   const Vector2& monsterPos = monster.GetPosition();
+   float monsterSize = monster.GetSize().X / 2;
+   const Vector2& heroPos = hero.GetPosition();
+   float heroSize = hero.GetSize().X / 2;
+
+   if(monsterPos.X + monsterSize < heroPos.X - heroSize)
+      return false;
+   if(monsterPos.X - monsterSize > heroPos.X + heroSize)
+      return false;
+   if(monsterPos.Y + monsterSize < heroPos.Y - heroSize)
+      return false;
+   if(monsterPos.Y - monsterSize > heroPos.Y + heroSize)
+      return false;
+   return true;  
+}
+static void DetectAndHandleCollisions(Monsters& monsters, Hero& hero)
+{
+   Monsters::iterator iter = monsters.begin();
+   while( iter != monsters.end())
+   {
+      if( IsCollision( *(*iter), hero) )
+      {
+         if( hero.shouldEngage( *(*iter) ) || (*iter)->shouldEngage(hero) )
+         {
+            if(hero.inCombat())
+            {
+               ++iter;
+               continue; 
+            }
+
+            std::list<Combatant*> force1;
+            force1.push_back( &hero);
+            std::list<Combatant*> force2;
+            force2.push_back( (*iter) );
+
+            Combat *combat = new Combat(force1, force2);
+            hero.SetCombat(combat);
+            (*iter)->SetCombat(combat);
+            s_activeCombats.push_back(combat);
+         }
+      }
+      ++iter;
+   }
+}
+
+void GameWorld::UpdateCombats(float dt)
+{
+   std::list<Combat*> rmList;
+
+   std::list<Combat*>::iterator iter = s_activeCombats.begin();
+   while(iter != s_activeCombats.end())
+   {
+      (*iter)->Update(dt);
+      if((*iter)->combatOver())
+      {         
+	      TypedMessage<const Combat*> *m = 
+            new TypedMessage<const Combat*>("CombatEnding", *iter );
+	      theSwitchboard.Broadcast(m);
+         rmList.push_back((*iter));
+      }
+      ++iter;
+   }
+
+   iter = rmList.begin();
+   while( iter != rmList.end())
+   {
+      s_activeCombats.remove(*iter);
+      delete (*iter); (*iter) = NULL;
+      ++iter;
+   }
+}
+void GameWorld::CleanupWorld()
+{
+   Monsters rmList;
+
+   Monsters::iterator iter = m_monsters.begin();
+   while( iter != m_monsters.end())
+   {
+      if((*iter)->isDead())
+         rmList.push_back((*iter));
+      ++iter;
+   }
+
+   iter = rmList.begin();
+   while( iter != rmList.end())
+   {
+      Monster* m = (*iter);
+      m_monsters.remove( m );
+      delete m; m= NULL;
+      ++iter;
+   }
+}
+void GameWorld::step(float dt)
+{     
+   // update our objects
+   m_hero->Update(dt);
+
+	Monsters::iterator iter = m_monsters.begin();
+	while(iter != m_monsters.end())
+	{
+      (*iter)->Update(dt);
+		++iter;
+	}
+   
+   Locations::iterator iter2 = m_locations.begin();
+	while(iter2 != m_locations.end())
+	{
+      (*iter2)->Update(dt);
+		++iter2;
+	}
+
+   DetectAndHandleCollisions(m_monsters, *m_hero);
+
+   UpdateCombats(dt);
+}
+const Locations& GameWorld::locations() const
+{
+   return m_locations;
+}
+
+Locations& GameWorld::locations()
+{
+   return m_locations;
+}
+
+const Monsters& GameWorld::monsters() const
+{
+   return m_monsters;
+}
+
+Monsters& GameWorld::monsters()
+{
+   return m_monsters;
+}
+
+const Hero& GameWorld::hero() const 
+{
+   return *m_hero;
+}
+const ArcaneLevelThresholdMap& 
+GameWorld::arcaneLevelThresholds() const
+{
+   return s_ArcaneLevelThresholds;
+}

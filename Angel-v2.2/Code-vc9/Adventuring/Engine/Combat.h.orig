@@ -1,0 +1,28 @@
+#pragma once
+
+#include <list>
+
+class Combatant;
+
+typedef std::list<Combatant*> CombatForce ;
+
+class Combat
+{
+public:
+   Combat(CombatForce force1, CombatForce force2);
+   virtual ~Combat();
+
+   const CombatForce& force1() const {return m_force1;}
+   const CombatForce& force2() const {return m_force2;}
+   void Update(float dt);
+   bool combatOver() const;
+
+protected:
+
+   void RemoveDeadCombatants();
+   void ExecuteRound();
+   CombatForce m_force1;
+   CombatForce m_force2;
+   float m_combatDuration;
+   float m_combatRoundCount;
+};
