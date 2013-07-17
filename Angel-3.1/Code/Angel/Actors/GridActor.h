@@ -141,6 +141,8 @@ public:
 	 *  to satisfy the abstract base class.
 	 */
 	virtual void Update(float dt) {}
+protected:
+   bool _drawAxis;
 
 private:
 	Color _lineColor;

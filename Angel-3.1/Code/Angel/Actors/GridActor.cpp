@@ -32,7 +32,7 @@
 
 #include "../Infrastructure/Common.h"
 
-GridActor::GridActor()
+GridActor::GridActor() : _drawAxis(false)
 {
 	//yay for magic numbers! (default parameters of the grid)
 	_lineColor = Color(.76f, .83f, 1.0f);
@@ -147,7 +147,10 @@ void GridActor::Render()
 	glDrawArrays(GL_LINES, 0, _points.size() / 2);
 	
 	// axes
-	glColor4f(_axisColor.R, _axisColor.G, _axisColor.B, 1.0f);
-	glVertexPointer(2, GL_FLOAT, 0, _axes);
-	glDrawArrays(GL_LINES, 0, 4);
+   if(_drawAxis)
+   {
+	   glColor4f(_axisColor.R, _axisColor.G, _axisColor.B, 1.0f);
+	   glVertexPointer(2, GL_FLOAT, 0, _axes);
+	   glDrawArrays(GL_LINES, 0, 4);
+   }
 }
