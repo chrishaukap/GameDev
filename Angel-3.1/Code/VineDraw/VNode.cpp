@@ -41,7 +41,9 @@ VNode::grow(const Vector2& targetPoint, bool& reachedTarget,
 void 
 VNode::render() const
 {		
-	DrawLine( m_location, endPoint() /*HAUKAP Color(0,1,0), MaxWidth*/ );
+   glColor3f(0,1,0);
+   glLineWidth(MaxWidth);
+	DrawLine( m_location, endPoint() );
 	int numChildren = (int)m_children.size();
    for(int i=0; i<numChildren; ++i)
       m_children[i]->render();
